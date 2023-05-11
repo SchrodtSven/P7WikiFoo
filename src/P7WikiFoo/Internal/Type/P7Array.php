@@ -45,6 +45,21 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         return $tmp;
     }
 
+    public static function createFromJsonFile(string $filename, bool $asArray = true): self
+    {
+        
+        return self::createFromJson(file_get_contents($filename), $asArray);
+    }
+
+    public static function createFromJson(string $json, bool $asArray = true): self
+    {
+        return new self(json_decode($json, $asArray));
+    }
+
+    public function join(string $glue): P7String
+    {
+        return new P7String(implode($glue, $this->current));
+    }
       /**
      * Applying callback on every element
      * 

@@ -1,18 +1,41 @@
 <?php
 
+declare(strict_types=1);
+/**
+ * Very basic template parser replacing placeholders ({{PLACE_HOLDER_NAME}} by default)  
+ * 
+ * @author Sven Schrodt<sven@schrodt.club>
+ * @link https://github.com/SchrodtSven/P7WikiFoo
+ * @package P7WikiFoo
+ * @version 0.1
+ * @since 2023-05-11
+ */
+
+
 namespace SchrodtSven\P7WikiFoo\Internal\TextProcessing;
+use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
+use SchrodtSven\P7WikiFoo\App;
 
 class BeggarmanParser
 {
+    use TypeConverterTrait;
+
     private array $find;
 
     private array $repl;
 
     private string $plHo = '{{%s}}';
 
-    public function __construct(private string $tpl)
+    public function __construct(private null|P7String|string $tpl = null)
     {
-        
+        if(!is_null($this->tpl))
+                        $this->sanitize();
+    }
+
+    public static function createFromTplFile(string $tplName)
+    {
+        return (new self())->loadTpl($tplName);
     }
 
     public function __set(string $name, mixed $value): void
@@ -28,8 +51,54 @@ class BeggarmanParser
         return $this;
     }
 
-    public function render(): string
+    public function render(): P7String
     {
-        return str_replace($this->find, $this->repl, $this->tpl);
+        return $this->tpl->replace($this->find, $this->repl);
+    }
+    
+
+    /**
+     * Get the value of tpl
+     */
+    public function getTpl(): P7String
+    {
+        return $this->tpl;
+    }
+
+    /**
+     * Set the value of tpl
+     */
+    public function setTpl(P7String|string $tpl): self
+    {
+        $this->tpl = $tpl;
+        $this->sanitize();
+        return $this;
+    }
+
+    public function loadTpl(string $tplName): self
+    {
+        $this->tpl = $this->p7stringifyFile(
+                                            implode (   '', [
+                                                                App::CHEAP_TPL_DIR,
+                                                                $tplName,
+                                                                '.tpl'
+                                                        ]
+                                            )
+        );
+        return $this;
+    }
+
+    public static function createFromFile(string $tplName): self
+    {
+        return (new self())->loadTpl($tplName);
+    }
+
+    private function sanitize(): void
+    {
+        if($this->tpl instanceof P7String) {
+            return; 
+        } else {
+            $this->tpl = $this->p7stringify($this->tpl);
+        }
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
  * OOP access to string operations
  * 
  * - rollback (depth 1 - otherwise use <code>clone</code>)
- * - using multi byte function internally
+ * - using multi byte functions internally
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
@@ -18,11 +18,15 @@ declare(strict_types=1);
 namespace SchrodtSven\P7WikiFoo\Internal\Type;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\MultiByteStringTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringEmbracingTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\PrintfTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringBoolTrait;
 
 class P7String implements \Stringable
 {
     use MultiByteStringTrait;
     use StringEmbracingTrait;
+    use PrintfTrait;
+    use StringBoolTrait;
 
     public function __construct(protected string $current = '', protected string $previous = '')
     {
@@ -47,7 +51,7 @@ class P7String implements \Stringable
         return new P7Array(explode($separator, $this->current));
     }
 
-    public function replace(string|array $find, string|array $replace): self
+    public function replace(string|array $find, string|array $replace = ''): self
     {
         $this->save();
         $this->current = str_replace($find, $replace, $this->current);
@@ -61,6 +65,33 @@ class P7String implements \Stringable
         return $this;
     }
 
+    public function append(string $string): self
+    {
+        $this->sprintfAppend($string);
+        return $this;
+    }
+
+    public function prepend(string $string): self
+    {
+        $this->sprintfPrepend($string);
+        return $this;
+    }
+
+    /**
+    * Trimming (often unneeded) white space on string boundaries of current content
+    * 
+    * @param string $characters
+    * @return StringClass
+    */
+   public function trim(string $characters = " \n\r\t\v\x00"): self
+   {
+        
+       $this->current = trim($this->current, $characters);
+       return $this;
+   }
+
+   
+    
     public function __toString(): string
     {
         return $this->current;

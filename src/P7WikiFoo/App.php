@@ -44,6 +44,7 @@ class App
      */
     public const MAIN_CFG = 'src/TriviaGame/Internal/main_cfg.php';
 
+    public const CHEAP_TPL_DIR = 'src/P7WikiFoo/Tools/Tpl/';
 
     /**
      * Configuration for mocking super global out of http context
