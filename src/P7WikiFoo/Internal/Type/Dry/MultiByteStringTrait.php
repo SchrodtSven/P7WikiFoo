@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * Trait wrapping native Multibyte String Functions for usage in:
  * 
- *  - use SchrodtSven\P7WikiFoo\Internal\Type\P7Array
+ *  - SchrodtSven\P7WikiFoo\Internal\Type\P7Array
  *  - SchrodtSven\P7WikiFoo\Internal\Type\P7String;
  * 
  * @see https://www.php.net/manual/de/ref.mbstring.php
@@ -21,7 +21,7 @@ namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
-class MultiByteStringTrait
+trait MultiByteStringTrait
 {
     
 
@@ -32,14 +32,14 @@ class MultiByteStringTrait
         }
         
 
-        public function strtoupper(string $string, ?string $encoding): self
+        public function upper(?string $encoding = null): self
         {
             $this->current = mb_strtoupper($this->current, $encoding);
             return $this;
         }
         
 
-        public function strtolower(string $string, ?string $encoding): self
+        public function lower(string $string, ?string $encoding): self
         {
             $this->current = mb_strtolower($this->current, $encoding);
             return $this;
@@ -53,9 +53,9 @@ class MultiByteStringTrait
         }
         
 
-        public function internalEncoding(?string $encoding): string|bool
+        public function internal_encoding(?string $encoding): string|bool
         {
-            return mb_internalEncoding($encoding);
+            return mb_internal_encoding($encoding);
             
         }
         
@@ -83,7 +83,7 @@ class MultiByteStringTrait
 
         public function substituteCharacter(string|int|null $substituteCharacter = null): string|int|bool
         {
-            return mb_substituteCharacter($substituteCharacter);
+            return mb_substitute_character($substituteCharacter);
             
         }
         
@@ -117,28 +117,28 @@ class MultiByteStringTrait
         }
         
 
-        public function strpos(string $haystack, string $needle, int $offset = 0, ?string $encoding): int|false
+        public function strpos(string $haystack, int $offset = 0, ?string $encoding = null): int|false
         {
-            return mb_strpos($haystack, $needle, $offset, $encoding);
+            return mb_strpos($haystack, $this->current, $offset, $encoding);
             
         }
         
 
-        public function strrpos(string $haystack, string $needle, int $offset = 0, ?string $encoding): int|false
+        public function strrpos(string $haystack, string $needle, int $offset = 0, ?string $encoding = null): int|false
         {
             return mb_strrpos($haystack, $needle, $offset , $encoding);
             
         }
         
 
-        public function stripos(string $haystack, string $needle, int $offset = 0, ?string $encoding): int|false
+        public function stripos(string $haystack, string $needle, int $offset = 0, ?string $encoding = null): int|false
         {
             return mb_stripos($haystack, $needle, $offset, $encoding);
             
         }
         
 
-        public function strripos(string $haystack, string $needle, int $offset = 0, ?string $encoding): int|false
+        public function strripos(string $haystack, string $needle, int $offset = 0, ?string $encoding = null): int|false
         {
             return mb_strripos($haystack, $needle, $offset, $encoding);
             
@@ -173,69 +173,69 @@ class MultiByteStringTrait
         }
         
 
-        public function substrCount(string $haystack, string $needle, ?string $encoding): int
+        public function substrCount(string $haystack, string $needle, ?string $encoding = null): int
         {
             return mb_substr_count($haystack, $needle, $encoding);
             
         }
         
 
-        public function substr(string $string, int $start, ?int $length, ?string $encoding): self
+        public function substr(int $start, ?int $length, ?string $encoding = null): self
         {
             return new self(mb_substr($this->current, $start, $length, $encoding));
         }
         
 
-        public function strcut(string $string, int $start, ?int $length, ?string $encoding): self
+        public function cut(int $start, ?int $length, ?string $encoding = null): self
         {
             return new self(mb_strcut($this->current, $start, $length, $encoding));
     
         }
         
 
-        public function strwidth(string $string, ?string $encoding): int
+        public function width(string $string, ?string $encoding = null): int
         {
             return mb_strwidth($this->current, $encoding);
             
         }
         
 
-        public function strimwidth(string $string, int $start, int $width, string $trim_marker = '', ?string $encoding): self
+        public function trimWidth(string $string, int $start, int $width, string $trim_marker = '', ?string $encoding  = null): self
         {
             $this->current = mb_strimwidth($this->current, $start, $width, $trim_marker = '', $encoding);
             return $this;
         }
         
 
-        public function convertEncoding(string $toEncoding, array|string|null $fromEncoding = null): self
+        public function convert_encoding(string $toEncoding, array|string|null $fromEncoding = null): self
         {
-            $this->content = mb_convertEncoding($this->current, $toEncoding, $fromEncoding);
+            $this->content = mb_convert_encoding($this->current, $toEncoding, $fromEncoding);
             return $this;
         }
         
 
-        public function detectEncoding(array|string|null $encodings = null, bool $strict = false): string|false
+        public function detect_encoding(array|string|null $encodings = null, bool $strict = false): string|false
         {
-            return mb_detectEncoding($this->current,$encodings, $strict);
+            return mb_detect_encoding($this->current,$encodings, $strict);
             
         }
         
 
         public function listEncodings(): array
         {
-            return mb_listEncodings();
+            return mb_list_encodings();
             
         }
         
 
         public function encodingAliases(string $encoding): P7Array
         {
-            return new P7Array(mbEncoding_aliases($encoding));
+            return new P7Array(mb_encoding_aliases($encoding));
             
         }
         
 
-        public function convertKana(string $string, string $mode = 'KV', ?string $encoding): self
+        public function convertKana(string $string, string $mode = 'KV', ?string $encoding  = null): self
         {
             $this->current = mb_convert_kana($this->current, $mode, $encoding);
             return $this;
@@ -270,13 +270,13 @@ class MultiByteStringTrait
         }
         
 
-        public function sendMail(
+      /*  public function sendMail(
                     string $to, string $subject, string $message, array|string $additionalHeaders = [], ?string $additional_params
             ): bool
         {
             return mb_send_mail($to, $subject, $message, $additionalHeaders, $additional_params);
             
-        }
+        } */
         
 
         public function getInfo(string $type = 'all'): array|string|int|false
@@ -286,16 +286,16 @@ class MultiByteStringTrait
         }
         
 
-        public function checkEncoding(array|string|null $value = null, ?string $encoding): bool
+        public function check_encoding(array|string|null $value = null, ?string $encoding = null): bool
         {
-            return mb_checkEncoding($value, $encoding);
+            return mb_check_encoding($value, $encoding);
             
         }
         
 
-        public function regexEncoding(?string $encoding): string|bool
+        public function regex_encoding(?string $encoding  = null): string|bool
         {
-            return mb_regexEncoding($encoding);
+            return mb_regex_encoding($encoding);
             
         }
         
@@ -323,7 +323,7 @@ class MultiByteStringTrait
 
         public function regexReplace(string $pattern, string $replacement, string $string, ?string $options = null): self
         {
-            $this-current = mb_ereg_replace($pattern,$replacement, $this->current, $options);
+            $this->current = mb_ereg_replace($pattern,$replacement, $this->current, $options);
             return $this;
         }
         
@@ -349,35 +349,35 @@ class MultiByteStringTrait
         }
         
 
-        public function regexMatch(string $pattern, string $string, ?string $options): bool
+        public function regexMatch(string $pattern, string $string, ?string $options = null): bool
         {
             return mb_ereg_match($pattern, $this->current, $options);
             
         }
         
 
-        public function regexSearch(?string $pattern, ?string $options): bool
+        public function regexSearch(?string $pattern, ?string $options = null): bool
         {
             return mb_ereg_search($pattern, $options);
             
         }
         
 
-        public function regexSearchPos(?string $pattern, ?string $options): array|false
+        public function regexSearchPos(?string $pattern, ?string $options = null): array|false
         {
             return mb_ereg_search_pos($pattern, $options);
             
         }
         
 
-        public function regexSearchRegs(?string $pattern, ?string $options): array|false
+        public function regexSearchRegs(?string $pattern, ?string $options = null): array|false
         {
             return mb_ereg_search_regs($pattern, $options);
             
         }
         
 
-        public function regexSearchInit(?string $pattern, ?string $options): bool
+        public function regexSearchInit(?string $pattern, ?string $options = null): bool
         {
             return mb_ereg_search_init($this->current, $pattern, $options);
             
