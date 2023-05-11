@@ -76,7 +76,7 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         return count($this->current());
     }
 
-    public function raw(): string
+    public function raw(): array
     {
         return $this->current;
     }

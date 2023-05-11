@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * OOP access to string operations
  * 
- * - rollback
+ * - rollback (depth 1 - otherwise use <code>clone</code>)
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
@@ -15,10 +15,12 @@ declare(strict_types=1);
 
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\MultiByteStringTrait;
 
 class P7String implements \Stringable
 {
-    
+    use MultiByteStringTrait;
+
     public function __construct(protected string $current = '', protected string $previous = '')
     {
 
@@ -37,13 +39,18 @@ class P7String implements \Stringable
         return $this;
     }
 
+    public function splitBy(string $separator): P7Array
+    {
+        return new P7Array(explode($separator, $this->current));
+    }
+
     public function __toString(): string
     {
         return $this->current;
     }
 
     /**
-     * Explicit alias for __toString 
+     * Explicit alias for __toString for future usage in interfaces
      *
      * @return string
      */

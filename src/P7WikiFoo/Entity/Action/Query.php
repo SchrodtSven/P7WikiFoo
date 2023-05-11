@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Entity class for Actions with Value "query"
+ * Entity class for Wikimedia main modules "action" of type  "query"
  * 
  * prop - get properties of page  
  * list - get list of pages matching a certain criterion

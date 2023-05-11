@@ -1,0 +1,36 @@
+
+action=query&list=
+                    allcategories
+                    alldeletedrevisions
+                    allfileusages
+                    allimages
+                    alllinks
+                    allpages
+                    allredirects
+                    allrevisions
+                    alltransclusions
+                    allusers
+                    backlinks
+                    blocks
+                    categorymembers
+                    deletedrevs
+                    embeddedin
+                    exturlusage
+                    filearchive
+                    imageusage
+                    iwbacklinks
+                    langbacklinks
+                    logevents
+                    pagepropnames
+                    pageswithprop
+                    prefixsearch
+                    protectedtitles
+                    querypage
+                    random
+                    recentchanges
+                    search
+                    tags
+                    usercontribs
+                    users
+                    watchlist
+                    watchlistraw
