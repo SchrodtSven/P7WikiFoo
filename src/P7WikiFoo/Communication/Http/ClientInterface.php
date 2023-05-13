@@ -34,5 +34,6 @@ interface  ClientInterface
     public function put(string $uri = ''): self;
     public function get(string $uri = ''): self;
     public function delete(string $uri = ''): self;
+    public function patch(string $uri = ''): self;
 
 }

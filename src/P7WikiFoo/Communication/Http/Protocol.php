@@ -36,6 +36,8 @@ class Protocol
 
     public const METHOD_DELETE = 'DELETE';
 
+    public const METHOD_PATCH = 'PATCH';
+
     public const METHOD_TRACE = 'TRACE';
 
     public const METHOD_CONNECT = 'CONNECT';

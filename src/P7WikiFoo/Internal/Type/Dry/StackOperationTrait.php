@@ -67,7 +67,6 @@ trait StackOperationTrait
     public function firstKey(): string|int|null
     {
         return array_key_first($this->current);
-        
     }
 
     /**
@@ -78,6 +77,5 @@ trait StackOperationTrait
     public function lastKey(): string|int|null
     {
         return array_key_last($this->current);
-        
     }
 }

@@ -67,12 +67,14 @@ class P7String implements \Stringable
 
     public function append(string $string): self
     {
+        $this->save();
         $this->sprintfAppend($string);
         return $this;
     }
 
     public function prepend(string $string): self
     {
+        $this->save();
         $this->sprintfPrepend($string);
         return $this;
     }
@@ -85,9 +87,9 @@ class P7String implements \Stringable
     */
    public function trim(string $characters = " \n\r\t\v\x00"): self
    {
-        
-       $this->current = trim($this->current, $characters);
-       return $this;
+        $this->save();
+        $this->current = trim($this->current, $characters);
+        return $this;
    }
 
    

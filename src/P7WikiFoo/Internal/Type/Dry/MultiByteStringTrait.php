@@ -87,8 +87,13 @@ trait MultiByteStringTrait
             
         }
         
-
-        public function parseStr(string $string): string
+        /**
+         * Parse GET/POST/COOKIE data and set global variable
+         *
+         * @param string $string
+         * @return string
+         */
+        public function parseStr(string $string): mixed
         {
             mb_parse_str($this->current, $result);
             return $result;
@@ -116,10 +121,17 @@ trait MultiByteStringTrait
             
         }
         
-
-        public function strpos(string $haystack, int $offset = 0, ?string $encoding = null): int|false
+        /**
+         * Find position of $nefirst occurrence of string in a string
+         *
+         * @param string $haystack
+         * @param integer $offset
+         * @param string|null $encoding
+         * @return integer|false
+         */
+        public function pos(string $needle, int $offset = 0, ?string $encoding = null): int|false
         {
-            return mb_strpos($haystack, $this->current, $offset, $encoding);
+            return mb_strpos($needle, $this->current, $offset, $encoding);
             
         }
         

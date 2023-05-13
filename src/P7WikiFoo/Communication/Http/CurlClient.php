@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @link https://github.com/SchrodtSven/P7WikiFoo
  * @package P7WikiFoo
  * @version 0.1
- * @since 2022-05-10
+ * @since 2022-05-11
  * 
  */
 
@@ -99,15 +99,17 @@ class CurlClient implements ClientInterface
         $queryString = http_build_query($this->parameters->raw());
         switch ($this->method) {
 
-            case 'GET':
-            case 'DELETE':
+            case Protocol::METHOD_GET:
+            case Protocol::METHOD_DELETE;
                 // For GET and DELETE we send parameters within URI as query string
                 $this->uri .= '?' . $queryString;
                 break;
 
-            case 'POST':
+            case Protocol::METHOD_POST:
+            case Protocol::METHOD_PUT:    
+            case Protocol::METHOD_PATCH:
             case 'PUT':
-                // For PUT and POST we send parameters in payload
+                // For PUT, PATCH and POST we send parameters in payload
                 $this->setCurlOption(CURLOPT_POSTFIELDS, $queryString);
                 break;
 
@@ -212,6 +214,12 @@ class CurlClient implements ClientInterface
     public function delete(string $uri = ''): self
     {
         $this->process($uri, 'DELETE');
+        return $this;
+    }
+
+    public function patch(string $uri = ''): self
+    {
+        $this->process($uri, 'PATCH');
         return $this;
     }
 
