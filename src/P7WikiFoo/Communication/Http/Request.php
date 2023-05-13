@@ -40,13 +40,14 @@ class Request
         $this->requestTime = (int)$_SERVER['REQUEST_TIME'] ?? null;
 
         switch ($this->requestMethod) {
-            case 'PUT':
+            case  Protocol::METHOD_PUT:
+            case  Protocol::METHOD_PATCH:
                 parse_str(file_get_contents('php://input'), $tmp);
                 break;
-            case 'GET':
+            case Protocol::METHOD_GET:
                 $tmp = $_GET;
                 break;
-            case 'POST':
+            case Protocol::METHOD_POST:
                 $tmp = $_POST;
                 break;
             default:

@@ -23,8 +23,8 @@ interface  ClientInterface
     public function setMethod(string $method): self;
     public function setParameters(array $parameters): self;
     public function getParameters(): P7Array;
-    public function setParameter(string $name, $value);
-    public function getParameter(string $name);
+    public function setParameter(string $name, string $value): ClientInterface;
+    public function getParameter(string $name): string;
     public function getUri(): string;
     public function setUri(string $uri): self;
     public function getTtl(): int;

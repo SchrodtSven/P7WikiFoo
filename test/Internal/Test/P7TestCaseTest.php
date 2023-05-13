@@ -12,7 +12,7 @@ declare(strict_types=1);
  */
 
 use SchrodtSven\P7WikiFoo\Internal\Test\P7TestCase;
-use SchrodtSven\P7WikiFoo\Internal\Test\P7TestCase;
+
 
 class P7TestCaseTest extends P7TestCase
 {

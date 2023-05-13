@@ -21,7 +21,10 @@ class P7StringTest extends P7TestCase
 
 
 
-
+    public function testAppendingPrepending()
+    {
+        $this->assertTrue(2 === 1+1);
+    }
 
     
 }

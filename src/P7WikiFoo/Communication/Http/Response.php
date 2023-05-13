@@ -152,13 +152,13 @@ class Response
     {
         $instance = new self();
         $tmp = (new P7String($response))->splitBy(Protocol::MESSAGE_SEPARATOR);
-        $instance->setHeaders($tmp->get(0));
-        $instance->setPayload($tmp->get(1));
+        $instance->setHeaders($tmp[0]);
+        $instance->setPayload($tmp[1]);
         $tmp = (new P7String($instance->headers))->splitBy(Protocol::HEADER_SEPARATOR);
         $instance->setStatusLine($tmp->shift());
         $tmp->walk(function($item) use($instance){
             $t = (new P7String($item))->splitBy(': ');
-            $instance->setParsedHeader($t->get(0), $t->get(1));
+            $instance->setParsedHeader($t[0], $t[1]);
             
         });
         return $instance;
