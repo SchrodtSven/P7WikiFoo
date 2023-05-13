@@ -20,6 +20,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\MultiByteStringTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringEmbracingTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\PrintfTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringBoolTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\SubStringTrait;
 
 class P7String implements \Stringable
 {
@@ -27,7 +28,8 @@ class P7String implements \Stringable
     use StringEmbracingTrait;
     use PrintfTrait;
     use StringBoolTrait;
-
+    use SubStringTrait;
+    
     public function __construct(protected string $current = '', protected string $previous = '')
     {
 
@@ -93,7 +95,11 @@ class P7String implements \Stringable
    }
 
    
-    
+    /**
+     * Make it being a string
+     *
+     * @return string
+     */
     public function __toString(): string
     {
         return $this->current;

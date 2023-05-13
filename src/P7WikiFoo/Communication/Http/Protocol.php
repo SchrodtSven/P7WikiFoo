@@ -63,7 +63,8 @@ class Protocol
         self::METHOD_PUT,
         self::METHOD_DELETE,
         self::METHOD_TRACE,
-        self::METHOD_CONNECT
+        self::METHOD_CONNECT,
+        self::METHOD_PATCH
     );
 
     /**

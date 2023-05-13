@@ -1,7 +1,7 @@
     /**
      * {{ABSTRACT}}
      * 
-     * {{TAGS}}
+{{TAGS}}
      */
     {{VISI}} function {{FUNC}}({{SIG}}): {{RETVAL}}
     {

@@ -16,6 +16,8 @@ namespace SchrodtSven\P7WikiFoo\Internal\TextProcessing;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
 use SchrodtSven\P7WikiFoo\App;
+use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
+use SchrodtSven\P7WikiFoo\Internal\TextProcessing\TplContainer;
 
 class BeggarmanParser
 {
@@ -27,13 +29,18 @@ class BeggarmanParser
 
     private string $plHo = '{{%s}}';
 
+    private P7Array $tags;
+
+    
+
     public function __construct(private null|P7String|string $tpl = null)
     {
         if(!is_null($this->tpl))
                         $this->sanitize();
+        $this->tags = new P7Array();                
     }
 
-    public static function createFromTplFile(string $tplName)
+    public static function createFromTplFile(string $tplName): self
     {
         return (new self())->loadTpl($tplName);
     }
@@ -53,6 +60,9 @@ class BeggarmanParser
 
     public function render(): P7String
     {
+        if(count($this->tags)) {
+            $this->TAGS = $this->tags->join(PHP_EOL);
+        }
         return $this->tpl->replace($this->find, $this->repl);
     }
     
@@ -86,6 +96,11 @@ class BeggarmanParser
                                             )
         );
         return $this;
+    }
+
+    public function addTagLine(string $tag, string $value)
+    {
+        $this->tags->push(sprintf(TplContainer::DOC_BLOCK_TAG, $tag, $value));
     }
 
     public static function createFromFile(string $tplName): self
