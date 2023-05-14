@@ -14,6 +14,8 @@ declare(strict_types=1);
  * @package P7WikiFoo
  * @version 0.1
  * @since 2023-05-11
+ * 
+ * @FIXME !!!
  */
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;

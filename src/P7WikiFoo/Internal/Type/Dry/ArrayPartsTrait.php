@@ -23,7 +23,10 @@ trait ArrayPartsTrait
 {
     
 
-
+    public function cutColumn(string $column): self
+    {
+        return new self(array_column($this->current, $column));
+    }
  
 
 }

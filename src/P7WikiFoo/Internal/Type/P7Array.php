@@ -16,8 +16,11 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayAccessTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayCallbackTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayPartsTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\IteratorTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StackOperationTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
 
 class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 {
@@ -25,6 +28,9 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     use IteratorTrait;
     use ArrayAccessTrait;
     use StackOperationTrait;
+    use ArrayPartsTrait;
+    use ArrayCallbackTrait;
+    use TypeConverterTrait;
 
     public function __construct(protected array $current = [], protected array $previous = [])
     {
@@ -60,17 +66,7 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     {
         return new P7String(implode($glue, $this->current));
     }
-      /**
-     * Applying callback on every element
-     * 
-     * @param callable $callback 
-     * @return self
-     */
-    public function walk(callable $callback): self
-    {
-        array_walk($this->current, $callback);
-        return $this;
-    }
+    
 
     protected function save(): self
     {

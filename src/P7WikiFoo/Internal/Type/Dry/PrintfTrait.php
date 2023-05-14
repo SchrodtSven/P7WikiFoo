@@ -26,7 +26,7 @@ trait PrintfTrait
 
     protected function vsprintfReplace(string $format, array $args): void
     {
-        $this->sprintfReplace(vsprintf($format, $args));
+        $this->current = vsprintf($format, $args);
     }
 
     protected function sprintfReplace(string $string, string $plus = ''): void

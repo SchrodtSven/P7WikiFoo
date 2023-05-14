@@ -19,7 +19,7 @@ namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 trait CodeBuildingTrait
 {
 
-    protected string $space = ' ';
+    protected string $indentMark = ' ';
 
     protected int $indentWidth = 4;
 
@@ -31,7 +31,7 @@ trait CodeBuildingTrait
             if(is_null($level))
                                 $level = $this->indentLevel;
 
-            $this->current->prepend(str_repeat($this->spac, $this->indentWidth * $level));
+            $this->current->prepend(str_repeat($this->indentMark, $this->indentWidth * $level));
             return $this;
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * Collection of static functions matching sub strings by:
+ * Collection of functionality operations for sub strings by:
  * 
  * - RegExp(s)
  * - Rule(s)
@@ -15,50 +15,29 @@
  */
 namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 
+use SebastianBergmann\CodeCoverage\Driver\PathExistsButIsNotDirectoryException;
 
 trait SubStringTrait
 {
     /**
      * Getting sub string enclosed by $start and $end - $start and $end will be quoted for regex context
      * 
-     * Example usage & output:
-     * <code>
-     *   echo SubStringMatcher::stringsBetween('Foo [bar] baz',
-     *                                     '[',
-     *                                     ']'     
-     *                                      ); // bar
-     * 
-     * var_dump(SubStringMatcher::stringsBetween('Foo bar {{baz 1 2 }} 4','{{','}}',false));
-     * 
-     * //array(2) {
-     * //  [0]=>
-     * //  array(1) {[0]=>string(12) "{{baz 1 2 }}"
-     * //  }
-     * //  [1]=>     
-     * // array(1) { [0]=> string(8) "baz 1 2 "
-     * //  }
-     * // }
-
-     * 
-     *  
-     * </code>
-     * 
-     * @param string $string 
      * @param string $start 
      * @param string $end 
-     * @return string | array
+     * @return self
      */
-    public function stringsBetween(
-            string $start, 
-            string $end, 
-            bool $isolatedStringOnly = true
-    ): self
+    public function stringsBetween(string $start, string $end): self
     {
-            
             $start = preg_quote($start);
             $end = preg_quote($end);
             $pattern = "/{$start}(.*){$end}/U"; // ungreedy modififer
+
+
+            //var_dump([string $start, string $end]);
+            
             preg_match_all($pattern, $this->current, $txt);
+            var_dump($txt);//die;
+            var_dump($pattern);
             $this->current = $txt[1][0];
             return $this;
     }

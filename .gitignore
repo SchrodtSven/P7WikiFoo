@@ -8,6 +8,7 @@ phpunit.phar
 foo.php
 goo.php
 boo.php
+moo.php
 cache 
 dump
 testme.php
