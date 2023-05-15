@@ -21,6 +21,8 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringEmbracingTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\PrintfTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringBoolTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\SubStringTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\CodeBuildingTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringContextTrait;
 
 class P7String implements \Stringable
 {
@@ -29,6 +31,8 @@ class P7String implements \Stringable
     use PrintfTrait;
     use StringBoolTrait;
     use SubStringTrait;
+    use CodeBuildingTrait;
+    use StringContextTrait;
     
     public function __construct(protected string $current = '', protected string $previous = '')
     {

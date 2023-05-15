@@ -14,7 +14,7 @@
  * @since 2023-05-01
  */
 namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
-
+use SchrodtSven\P7WikiFoo\Internal\Data\NamedSymbols;
 
 trait CodeBuildingTrait
 {
@@ -58,6 +58,12 @@ trait CodeBuildingTrait
     {
         $this->indentLevel = $indentLevel;
 
+        return $this;
+    }
+
+    public function quote(string $mark = NamedSymbols::SINGLE_QUOTES_START): self
+    {
+        $this->embrace($mark);
         return $this;
     }
 }

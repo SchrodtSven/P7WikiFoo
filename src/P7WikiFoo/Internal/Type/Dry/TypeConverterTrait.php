@@ -39,4 +39,13 @@ trait TypeConverterTrait
         //@FIXME  if (!file_exists...)
         return new P7String(file_get_contents($fileName));
     }
+
+    public function sanitizeP7String(mixed $value): P7String
+    {
+        if(! $value instanceof P7String) {
+            $value = $this->p7stringify($value);
+        }
+
+        return $value;
+    }
 }

@@ -282,17 +282,7 @@ trait MultiByteStringTrait
             $this->current = mb_encode_numericentity($this->current, $map, $encoding, $hex);
             return $this;
         }
-        
-
-      /*  public function sendMail(
-                    string $to, string $subject, string $message, array|string $additionalHeaders = [], ?string $additional_params
-            ): bool
-        {
-            return mb_send_mail($to, $subject, $message, $additionalHeaders, $additional_params);
-            
-        } */
-        
-
+      
         public function getInfo(string $type = 'all'): array|string|int|false
         {
             return mb_get_info($type = 'all');

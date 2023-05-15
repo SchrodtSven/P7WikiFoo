@@ -4,7 +4,7 @@ declare(strict_types=1);
 /**
  * Interface defining stack operation API
  *
- *  @author Sven Schrodt<sven@schrodt.club>
+ * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
  * @package P7WikiFoo
  * @version 0.1

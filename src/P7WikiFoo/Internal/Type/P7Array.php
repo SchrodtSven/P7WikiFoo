@@ -21,6 +21,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayPartsTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\IteratorTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StackOperationTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArraySortTrait;
 
 class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 {
@@ -31,6 +32,7 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     use ArrayPartsTrait;
     use ArrayCallbackTrait;
     use TypeConverterTrait;
+    use ArraySortTrait;
 
     public function __construct(protected array $current = [], protected array $previous = [])
     {
@@ -67,6 +69,17 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         return new P7String(implode($glue, $this->current));
     }
     
+    /**
+     * Reove ,ultiple values from current content
+     *
+     * @param [type] $flags
+     * @return self
+     */
+    public function removeMultipleValues(int $flags = \SORT_REGULAR):self
+    {
+        $this->current = array_unique($this->current, $flags);
+        return $this;    
+    }
 
     protected function save(): self
     {
@@ -90,5 +103,11 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     public function raw(): array
     {
         return $this->current;
+    }
+
+    public function rand(int $num =1): self
+    {
+        return ($num === 1) ? new self([array_rand($this->current, $num)])
+                            : new self(array_rand($this->current, $num));
     }
 }

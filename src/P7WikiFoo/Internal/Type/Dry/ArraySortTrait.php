@@ -23,7 +23,11 @@ trait ArraySortTrait
 {
     
 
-
+    public function sort(int $flags = \SORT_REGULAR): self
+    {
+        sort($this->current, $flags);
+        return $this;
+    }
  
 
 }

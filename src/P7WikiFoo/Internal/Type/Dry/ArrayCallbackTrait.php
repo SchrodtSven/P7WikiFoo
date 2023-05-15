@@ -49,9 +49,19 @@ trait ArrayCallbackTrait
 
     public function quote(string $mark = NamedSymbols::SINGLE_QUOTES_START): self
     {
-        $this->walk(function (&$item) use($mark) {
+
+        $this->prepareForQuoting()->walk(function (&$item) use($mark) {
             $item = $this->sanitizeP7String($item);
             $item->quote($mark);
+        });
+        return $this;
+    }
+
+    protected function prepareForQuoting(): self
+    {
+        $this->walk(function (&$item) {
+            $item = $this->sanitizeP7String($item);
+            $item->addSlashes();
         });
         return $this;
     }

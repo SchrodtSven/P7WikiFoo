@@ -22,7 +22,12 @@ namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 trait ArrayPartsTrait
 {
     
-
+    /**
+     * Cut elements indexed|keyed $column
+     *
+     * @param string $column
+     * @return self
+     */
     public function cutColumn(string $column): self
     {
         return new self(array_column($this->current, $column));

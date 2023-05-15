@@ -42,9 +42,11 @@ class App
     /**
      * Main app configuration
      */
-    public const MAIN_CFG = 'src/TriviaGame/Internal/main_cfg.php';
+    public const MAIN_CFG = 'src/P7WikiFoo/Internal/main_cfg.php';
 
     public const CHEAP_TPL_DIR = 'src/P7WikiFoo/Tools/Tpl/';
+
+    public const MOCK_RAW_DIR = 'data/Mock/';
 
     /**
      * Configuration for mocking super global out of http context

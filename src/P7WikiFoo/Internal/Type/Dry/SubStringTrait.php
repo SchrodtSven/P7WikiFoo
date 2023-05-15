@@ -31,13 +31,7 @@ trait SubStringTrait
             $start = preg_quote($start);
             $end = preg_quote($end);
             $pattern = "/{$start}(.*){$end}/U"; // ungreedy modififer
-
-
-            //var_dump([string $start, string $end]);
-            
             preg_match_all($pattern, $this->current, $txt);
-            var_dump($txt);//die;
-            var_dump($pattern);
             $this->current = $txt[1][0];
             return $this;
     }
