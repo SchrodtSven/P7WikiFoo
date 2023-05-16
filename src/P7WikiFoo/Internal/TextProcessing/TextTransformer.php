@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @package P7WikiFoo
  * @version 0.1
  * @since 2023-05-11
+ * @deprecated 0.2
  */
 
 

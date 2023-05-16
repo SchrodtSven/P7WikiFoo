@@ -22,6 +22,8 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\IteratorTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StackOperationTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArraySortTrait;
+use SchrodtSven\P7WikiFoo\Internal\SingletonFactory; 
+use Random\Randomizer;
 
 class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 {
@@ -107,7 +109,14 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 
     public function rand(int $num =1): self
     {
-        return ($num === 1) ? new self([array_rand($this->current, $num)])
-                            : new self(array_rand($this->current, $num));
+        $randomizr = SingletonFactory::get(Randomizer::class);
+        return new self($randomizr->pickArrayKeys($this->current, $num));
+    }
+
+    public function shuffle(): self
+    {   
+        $randomizr = SingletonFactory::get(Randomizer::class);
+        $this->current = $randomizr->shuffleArray($this->current);
+        return $this;
     }
 }

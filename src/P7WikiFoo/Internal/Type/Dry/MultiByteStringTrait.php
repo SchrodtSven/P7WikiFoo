@@ -41,7 +41,7 @@ trait MultiByteStringTrait
         }
         
 
-        public function lower(string $string, ?string $encoding): self
+        public function lower(?string $encoding = null): self
         {
             $this->current = mb_strtolower($this->current, $encoding);
             return $this;

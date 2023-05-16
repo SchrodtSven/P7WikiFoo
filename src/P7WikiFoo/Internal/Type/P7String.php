@@ -23,6 +23,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringBoolTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\SubStringTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\CodeBuildingTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringContextTrait;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StringTransformingTrait;
 
 class P7String implements \Stringable
 {
@@ -33,6 +34,7 @@ class P7String implements \Stringable
     use SubStringTrait;
     use CodeBuildingTrait;
     use StringContextTrait;
+    use StringTransformingTrait;
     
     public function __construct(protected string $current = '', protected string $previous = '')
     {
@@ -54,6 +56,14 @@ class P7String implements \Stringable
 
     public function splitBy(string $separator): P7Array
     {
+        /*
+        echo $separator;
+        echo PHP_EOL;
+        echo $this->current;
+        echo PHP_EOL;
+        var_dump(explode($separator, $this->current));
+        echo PHP_EOL;
+        die;*/
         return new P7Array(explode($separator, $this->current));
     }
 
@@ -71,14 +81,14 @@ class P7String implements \Stringable
         return $this;
     }
 
-    public function append(string $string): self
+    public function append(string|P7String $string): self
     {
         $this->save();
         $this->sprintfAppend($string);
         return $this;
     }
 
-    public function prepend(string $string): self
+    public function prepend(string|P7String $string): self
     {
         $this->save();
         $this->sprintfPrepend($string);

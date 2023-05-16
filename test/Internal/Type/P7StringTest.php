@@ -20,11 +20,38 @@ class P7StringTest extends P7TestCase
     
 
 
-
-    public function testAppendingPrepending()
+    //['Armando', 'Eilers', 'Armando Eilers', 'eilers.armando@example.org', '\"', '\"', '\"Eilers\"'],
+    /**
+     * @dataProvider basicProvider
+     *
+     * @param string $first
+     * @param string $last
+     * @param string $both
+     * @param string $mail
+     * @param string $start
+     * @param string $end
+     * @param string $embraced
+     * @return void
+     */
+    public function testAppendingPrepending(
+        string $first, 
+        string $last,
+        string $both, 
+        string $mail,
+        string $start, 
+        string $end,
+        string $embraced)
     {
-        $this->assertTrue(2 === 1+1);
+        $this->assertSame($first . ' ' . $last, (string) (new P7String($first))->append(' ')->append($last));
+        $this->assertSame($both, (string) (new P7String($first))->append(' ')->append($last));
+        $this->assertSame($embraced, (string) (new P7String($last))->embrace($start));
+        $this->assertSame($start . $last . $end, (string) (new P7String($last))->embrace($start));
+
+
     }
 
-    
+    public function basicProvider(): array
+    {
+        return $this->genericProvider('namesMails');
+    }
 }

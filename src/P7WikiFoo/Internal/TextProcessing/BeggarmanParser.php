@@ -47,8 +47,7 @@ class BeggarmanParser
 
     public function __set(string $name, mixed $value): void
     {
-        $this->find[] = sprintf($this->plHo, $name);
-        $this->repl[] = $value;
+        $this->set($name, $value);
     }
 
     public function set(string $name, mixed $value): self
@@ -110,9 +109,7 @@ class BeggarmanParser
 
     private function sanitize(): void
     {
-        if($this->tpl instanceof P7String) {
-            return; 
-        } else {
+        if(! $this->tpl instanceof P7String) {
             $this->tpl = $this->p7stringify($this->tpl);
         }
     }

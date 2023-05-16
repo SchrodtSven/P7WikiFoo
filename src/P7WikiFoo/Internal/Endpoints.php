@@ -41,7 +41,7 @@ class EndpointSettings
      * @see SchrodtSven\P7WikiFoo\Endpoints\QueryBuilder 
      * @var string
      */
-    public const FORMAT_JSON_SUFFIX = '&format=json';
+    public const FORMAT_JSON_SUFFIX = 'format=json';
     
     
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Getting array of metasyntacic variable names
+ * Getting array of metasyntacic & phantastic variable names
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
@@ -12,8 +12,15 @@ declare(strict_types=1);
  */
 
 return [
-        'ace', 'acme,', 'alice', 'bar', 'baz', 'bob', 'corge', 'dwan', 'eggs', 'eris', 'eve', 
-        'fnord', 'foo', 'foobar', 'fred', 'garply', 'grault', 'hand', 'haystack', 'ionsy', 'jep', 
-        'lart', 'luser', 'needle', 'octan', 'omm', 'plugh', 'quux', 'qux', 'razrram', 'spamm', 
-        'tata', 'thud', 'titi', 'trudy', 'tutu', 'waldo', 'widget', 'xilo', 'xyzzy', 'ymoo', 'znef'
+    'Aap', 'Ace', 'Acme', 'Alice', 'Azathoth', 'Balrog', 'Bar', 'Barney', 'Baz', 'Blarg', 
+    'Bob', 'Boo', 'Boo', 'Boogle', 'Bork', 'Buddle', 'Charybdis', 'Corge', 'Coul', 'Cthulhu', 
+    'Doh', 'Doo', 'Dwan', 'Eflow', 'Eggs', 'Eigthbeer', 'Ellak', 'Eris', 'Eve', 'Flarp', 'Fnord', 
+    'Foo', 'Foo', 'Foobar', 'Foobaz', 'Foogle', 'Fred', 'Garply', 'Ghatanothoa', 'Godzilla', 'Goo', 
+    'Gork', 'Grault', 'Hand', 'Haystack', 'Hoorz', 'Ionsy', 'Ithaqa', 'Jep', 'Kal-el', 'Kuddle', 
+    'Lart', 'Leviathan', 'Luser', 'Marvl', 'Mies', 'Moo', 'Muddle', 'Narcosm', 'Needle', 'Nodens', 
+    'Noot', 'Nyarlathotep', 'Octan', 'Omm', 'Oogle', 'Paperino', 'Pioh', 'Pippo', 'Plugh', 'Pluto', 
+    'Pommesfrites', 'Quuuux', 'Quuux', 'Quux', 'Qux', 'Razrram', 'Roo', 'Shme', 'Shub-niggurath', 
+    'Soo', 'Spamm', 'Spqr', 'Tata', 'Thud', 'Titi', 'Trudy', 'Tsathoggua', 'Tutu', 'Waldo', 
+    'Wibble', 'Widget', 'Wombat', 'Xenomorph', 'Xil', 'Xilo', 'Xyzzy', 'Ymoo', 'Yog‑sothoth', 
+    'Znef', 'Zork', 'Zot', 'Zulu', 'Zxc'
     ];

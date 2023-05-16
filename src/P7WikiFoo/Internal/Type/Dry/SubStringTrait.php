@@ -20,7 +20,8 @@ use SebastianBergmann\CodeCoverage\Driver\PathExistsButIsNotDirectoryException;
 trait SubStringTrait
 {
     /**
-     * Getting sub string enclosed by $start and $end - $start and $end will be quoted for regex context
+     * Getting sub string enclosed by $start and $end 
+     * - $start and $end will be quoted for regex context
      * 
      * @param string $start 
      * @param string $end 
@@ -32,6 +33,7 @@ trait SubStringTrait
             $end = preg_quote($end);
             $pattern = "/{$start}(.*){$end}/U"; // ungreedy modififer
             preg_match_all($pattern, $this->current, $txt);
+            //@FIXME -> error detection
             $this->current = $txt[1][0];
             return $this;
     }

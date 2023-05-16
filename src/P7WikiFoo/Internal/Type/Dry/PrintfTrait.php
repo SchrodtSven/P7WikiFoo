@@ -11,25 +11,26 @@
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 use SchrodtSven\P7WikiFoo\Internal\Data\NamedSymbols;
+use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 trait PrintfTrait
 {
-    protected function sprintfAppend(string $string): void
+    protected function sprintfAppend(string|P7String $string): void
     {
         $this->sprintfReplace($this->current, $string);
     }
 
-    protected function sprintfPrepend(string $string): void
+    protected function sprintfPrepend(string|P7String $string): void
     {
         $this->sprintfReplace($string, $this->current);
     }
 
-    protected function vsprintfReplace(string $format, array $args): void
+    protected function vsprintfReplace(string|P7String $format, array $args): void
     {
         $this->current = vsprintf($format, $args);
     }
 
-    protected function sprintfReplace(string $string, string $plus = ''): void
+    protected function sprintfReplace(string|P7String $string, string $plus = ''): void
     {
         $this->current = sprintf('%s%s', $string, $plus);
     }

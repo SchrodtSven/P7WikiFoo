@@ -15,11 +15,15 @@ declare(strict_types=1);
 
 
 namespace SchrodtSven\P7WikiFoo\Internal\Test;
-
+use SchrodtSven\P7WikiFoo\Internal\Data\DataSupplier;
+use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 use PHPUnit\Framework\TestCase;
 
 
 class P7TestCase extends TestCase
 {
-    
+        public function genericProvider(string $store): array
+        {
+            return (SingletonFactory::get(DataSupplier::class))->getMockFromRawData($store)->raw();
+        }
 }
