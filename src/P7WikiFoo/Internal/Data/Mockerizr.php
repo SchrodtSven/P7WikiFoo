@@ -126,4 +126,9 @@ class Mockerizr
         };
          
     }
+
+    public function getRandomEnclosingMark():
+    {
+        
+    }
 }

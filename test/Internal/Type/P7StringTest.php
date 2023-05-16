@@ -46,12 +46,47 @@ class P7StringTest extends P7TestCase
         $this->assertSame($both, (string) (new P7String($first))->append(' ')->append($last));
         $this->assertSame($embraced, (string) (new P7String($last))->embrace($start));
         $this->assertSame($start . $last . $end, (string) (new P7String($last))->embrace($start));
+    }
 
 
+    /**
+     * Testing transformation snake_case -> camelCase
+     *
+     * @dataProvider  snakyToCamelProvider
+     * 
+     * @param string $snake
+     * @param string $camel
+     * @param string $separator
+     * @return void
+     */
+    public function testSnakyCamelizing(string $snake, string $camel, string $separator): void
+    {
+        $this->assertSame($camel,  (string) (new P7String($snake))->camelize($separator));
+    }
+
+
+    /**
+     * Testing transformation snake_case -> camelCase
+     *
+     * @dataProvider  snakyToCamelProvider
+     * 
+     * @param string $snake
+     * @param string $camel
+     * @param string $separator
+     * @return void
+     */
+    public function testCamelikeSnakifying(string $snake, string $camel, string $separator): void
+    {
+        $this->assertSame($snake,  (string) (new P7String($camel))->snakify(true, $separator));
     }
 
     public function basicProvider(): array
     {
         return $this->genericProvider('namesMails');
+    }
+
+    public function snakyToCamelProvider(): array
+    {
+        return $this->genericProvider('snake2Camel');
     }
 }

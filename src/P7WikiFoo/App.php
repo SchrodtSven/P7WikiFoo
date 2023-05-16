@@ -21,35 +21,57 @@ class App
 
     /**
      * Namespace prefix for project files
+     * 
+     * @var string
      */
     public const VENDOR = 'SchrodtSven\P7WikiFoo';
 
     /**
      * Prefix to strip from fully qualified namespace to map to directories
+     * 
+     * @var string
      */
     private const MIMI =  'SchrodtSven\\';
 
     /**
      * Lib prefix
+     * 
+     * @var string
      */
     public const LIB_PREFIX = 'src/';
 
     /**
      * Separator for namespaces
+     * 
+     * @var string
      */
     public const NAMESPACE_SEPARATOR ='\\';
 
     /**
      * Main app configuration
+     * 
+     * @var string
      */
     public const MAIN_CFG = 'src/P7WikiFoo/Internal/main_cfg.php';
 
+    /**
+     * Basic template directory
+     * 
+     * @var string
+     */
     public const CHEAP_TPL_DIR = 'src/P7WikiFoo/Tools/Tpl/';
 
+    /**
+     * Directory with raw mocking data
+     * 
+     * @var string
+     */
     public const MOCK_RAW_DIR = 'data/Mock/';
 
     /**
      * Configuration for mocking super global out of http context
+     * 
+     * @var string
      */
     public const MOCK_HTTP_CFG = 'src/TriviaGame/Internal/mock_http.php';
 
@@ -58,7 +80,7 @@ class App
      *
      * @return void
      */
-    public function registerAutoloader()
+    public function registerAutoloader(): void
     {
         /**
          * Registering project specific auto loading
