@@ -38,6 +38,7 @@ trait MultiByteStringTrait
          *  - \MB_CASE_TITLE_SIMPLE,
          *  - \MB_CASE_FOLD_SIMPLE
          *
+         * @link https://www.php.net/manual/en/function.mb-convert-case
          * @param [type] $mode
          * @param string|null $encoding
          * @return self

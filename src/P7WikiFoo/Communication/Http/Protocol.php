@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 namespace P7WikiFoo\Communication\Http;
 
-class Protocol
+final class Protocol
 {
     public const VERSION_10 = '1.0';
 
@@ -55,7 +55,7 @@ class Protocol
      *
      * @var array
      */
-    protected static array $validMethods = array(
+    public const VALID_METHODS = array(
         self::METHOD_OPTIONS,
         self::METHOD_GET,
         self::METHOD_HEAD,
@@ -73,12 +73,10 @@ class Protocol
      *
      * Status code equals array key and value reason phrase
      *
-     *
-     * @TODO Complete list!
      * @link http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10
      * @var array
      */
-    public static $statusCodes = array(
+    public const STATUS_CODES = [        
         // Informational 1xx
         100 => 'Continue',
         101 => 'Switching Protocols',
@@ -145,7 +143,7 @@ class Protocol
         507 => 'Insufficient Storage',
         508 => 'Loop Detected',
         511 => 'Network Authentication Required'
-    );
+    ];
 
     /**
      * *
@@ -156,7 +154,22 @@ class Protocol
      */
     public static function getStatusCodes($codeOnly = false): array
     {
-        return ($codeOnly) ? array_keys(self::$statusCodes) : self::$statusCodes;
+        return ($codeOnly) ? array_keys(self::STATUS_CODES) : self::STATUS_CODES;
+    }
+
+    /**
+     * Returning status code line of HTTP response - example:
+     * 
+     * <code>
+     * 200 OK
+     * </code>
+     *
+     * @param integer $code
+     * @return string
+     */
+    public static function getStatusCodeLine(int $code): string
+    {
+        return sprintf('%u %s', $code, self::STATUS_CODES[$code]);
     }
 
     /**
@@ -166,7 +179,7 @@ class Protocol
      */
     public static function getMethods() : array
     {
-        return self::$validMethods;
+        return self::VALID_METHODS;
     }
 
     /**
@@ -177,6 +190,6 @@ class Protocol
      */
     public static function isValidMethod(string $method): bool
     {
-        return in_array(strtoupper($method), self::$validMethods, true);
+        return in_array(strtoupper($method), self::VALID_METHODS, true);
     }
 }

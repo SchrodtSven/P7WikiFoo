@@ -3,6 +3,7 @@
 declare(strict_types=1);
 /**
  * Very basic template parser replacing placeholders ({{PLACE_HOLDER_NAME}} by default)  
+ * and using native *printf functions
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

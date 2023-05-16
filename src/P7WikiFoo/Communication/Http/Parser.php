@@ -19,11 +19,25 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 class Parser
 {
+    /**
+     * Parsing URI  
+     * 
+     * @param string $uri
+     * @param integer $component
+     * @return mixed
+     */
     public function parseUri(string $uri, int $component = -1): mixed
     {
         return parse_url($uri, $component);
     }
 
+    /**
+     * Getting URI part
+     *
+     * @param string $uri
+     * @param string $part
+     * @return P7String|null
+     */
     public function getUriPart(string $uri, string $part): ?P7String
     {
         $tmp = $this->parseUri($uri);
@@ -45,19 +59,53 @@ class Parser
         return (new P7String($message))->splitBy(Protocol::MESSAGE_SEPARATOR);
     }
 
+    /**
+     * Parsing query string
+     *
+     * @param string $queryString
+     * @return P7Array
+     */
     public function parseQueryString(string $queryString): P7Array
     {
         mb_parse_str($queryString, $data);
         return new P7Array($data);
     }
 
-    public function buildQueryStringNDT(array $data): string
+    /**
+     * Building query string from native data types - to native data type
+     *
+     * @param array|object $data
+     * @param string $numericPrefix
+     * @param string|null $argSeparator
+     * @param [type] $encodingType
+     * @return string
+     */
+    public function buildQueryStringNDT(
+                                        array|object $data,
+                                        string $numericPrefix = "",
+                                        ?string $argSeparator = null,
+                                        int $encodingType = \PHP_QUERY_RFC1738
+    ): string
     {
-        return http_build_query($data);
+        return http_build_query($data, $numericPrefix, $argSeparator, $encodingType);
     }
 
-    private function buildQueryString(P7Array $data): P7String
+    /**
+     * Building query string 
+     *
+     * @param P7Array $data
+     * @param string $numericPrefix
+     * @param string|null $argSeparator
+     * @param [type] $encodingType
+     * @return P7String
+     */
+    private function buildQueryString(
+                                        P7Array $data,
+                                        string $numericPrefix = "",
+                                        ?string $argSeparator = null,
+                                        int $encodingType = \PHP_QUERY_RFC1738
+    ): P7String
     {
-        return new P7String(http_build_query($data));
+        return new P7String(http_build_query($data->raw(), $numericPrefix, $argSeparator, $encodingType));
     }
 }

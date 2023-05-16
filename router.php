@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 /**
- *  router.php - to be used with PHP Development Server for local development/testing purposes
+ *  This router is to be used with PHP Development Server for local development/testing purposes
  * 
- * - Routing to public/index.php if requested resource does not exist as file resource 
+ * - Routing to public/bootstrap.php if requested resource does not exist as file resource 
  *   in document root ($PROJECTNAME/public)
  * 
  * @author Sven Schrodt<sven@schrodt.club>
