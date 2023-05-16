@@ -47,7 +47,7 @@ trait StringTransformingTrait
         $tmp->walk(function(&$item) {
             $item = (new P7String($item))->lower()->upperFirst();
         });
-     //   var_dump($tmp);die;
+     
         return ($lowerFirst) 
                     ? $first->append($tmp->join(''))
                     : $first->append($tmp->join(''))->upperFirst();

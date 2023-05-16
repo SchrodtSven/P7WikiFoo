@@ -26,14 +26,35 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 trait MultiByteStringTrait
 {
     
-
-        public function convertCase(string $string, int $mode, ?string $encoding): self
+        /**
+         * Converting case in current string content - available modes:
+         * 
+         *  - \MB_CASE_UPPER, 
+         *  - \MB_CASE_LOWER,
+         *  - \MB_CASE_TITLE,
+         *  - \MB_CASE_FOLD,
+         *  - \MB_CASE_UPPER_SIMPLE,
+         *  - \MB_CASE_LOWER_SIMPLE,
+         *  - \MB_CASE_TITLE_SIMPLE,
+         *  - \MB_CASE_FOLD_SIMPLE
+         *
+         * @param [type] $mode
+         * @param string|null $encoding
+         * @return self
+         */
+        public function convertCase(int $mode = \MB_CASE_TITLE, ?string $encoding = null): self
         {
             $this->current = mb_convert_case($this->current, $mode, $encoding);
             return $this;
         }
         
 
+        /**
+         * Upper case current string content
+         *
+         * @param string|null $encoding
+         * @return self
+         */
         public function upper(?string $encoding = null): self
         {
             $this->current = mb_strtoupper($this->current, $encoding);
@@ -41,35 +62,58 @@ trait MultiByteStringTrait
         }
         
 
+        /**
+         * Lower case current string content
+         *
+         * @param string|null $encoding
+         * @return self
+         */
         public function lower(?string $encoding = null): self
         {
             $this->current = mb_strtolower($this->current, $encoding);
             return $this;
         }
         
-
-        public function language(?string $language): string|bool
+        /**
+         * Getting current language
+         *
+         * @param string|null $language
+         * @return string|boolean
+         */
+        public function getLanguage(): string|bool
+        {
+            return mb_language();
+            
+        }
+        
+        /**
+         * Setting current language
+         *
+         * @param string|null $language
+         * @return string
+         */
+        public function setLanguage(string $language): string
         {
             return mb_language($language);
             
         }
-        
+        //?string $language
 
-        public function internal_encoding(?string $encoding): string|bool
+        public function internalEncoding(?string $encoding = null): string|bool
         {
             return mb_internal_encoding($encoding);
             
         }
         
 
-        public function httpInput(?string $type): array|string|false
+        public function httpInput(?string $type = null): array|string|false
         {
             return mb_http_input($type);
             
         }
         
 
-        public function httpOutput(?string $encoding): string|bool
+        public function httpOutput(?string $encoding = null): string|bool
         {
             return mb_http_output($encoding);
             
@@ -124,7 +168,7 @@ trait MultiByteStringTrait
         }
         
         /**
-         * Find position of $nefirst occurrence of string in a string
+         * Find position of first occurrence of string in a string
          *
          * @param string $haystack
          * @param integer $offset
