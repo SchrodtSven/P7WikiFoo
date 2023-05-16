@@ -7,6 +7,8 @@ declare(strict_types=1);
  *  - native PHP classes
  *  - custom project specific classes 
  * 
+ * Key in container is fqcn (fully qualified class name) of singleton instances
+ * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
  * @package P7WikiFoo
@@ -22,13 +24,24 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 class SingletonFactory
 {
     
-    public static $container = [
+    /**
+     * Container array holding fqcn as keys and ?instances
+     *
+     * @var array
+     */
+    public static array $container = [
         \Random\Randomizer::class => null,
         \SchrodtSven\P7WikiFoo\Internal\Data\DataSupplier::class => null,
         \SchrodtSven\P7WikiFoo\Internal\Data\Mockerizr::class => null
 
     ];
 
+    /**
+     * Getter for singleton instances
+     *
+     * @param string $containerKey
+     * @return mixed
+     */
     public static function get(string $containerKey):mixed
     {
         if(is_null((self::$container[$containerKey]))) 
