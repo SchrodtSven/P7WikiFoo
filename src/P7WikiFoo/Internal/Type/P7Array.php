@@ -83,6 +83,11 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         return $this;    
     }
 
+    /**
+     * Saving current state
+     *
+     * @return self
+     */
     protected function save(): self
     {
         $this->previous = $this->current;
@@ -96,25 +101,46 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         $this->current = $this->previous;
         return $this;
     }
-
+    /**
+     * Implementing \Countable interface
+     *
+     * @return int
+     */
     public function count(): int
     {
         return count($this->current);
     }
 
+    /**
+     * Returning raw content
+     *
+     * @return array
+     */
     public function raw(): array
     {
         return $this->current;
     }
 
+    /**
+     * Getting $num random keys from current content
+     *
+     * @param int $num
+     * @return self
+     */
     public function rand(int $num =1): self
     {
         $randomizr = SingletonFactory::get(Randomizer::class);
         return new self($randomizr->pickArrayKeys($this->current, $num));
     }
 
+    /**
+     * Shuffling order of values and changing keys
+     *
+     * @return self
+     */
     public function shuffle(): self
     {   
+        $this->save();
         $randomizr = SingletonFactory::get(Randomizer::class);
         $this->current = $randomizr->shuffleArray($this->current);
         return $this;

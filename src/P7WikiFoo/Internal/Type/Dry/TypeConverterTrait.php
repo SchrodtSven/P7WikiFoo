@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * trait for type conversion opoartions
+ * Trait for type conversion operations
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
@@ -40,6 +40,12 @@ trait TypeConverterTrait
         return new P7String(file_get_contents($fileName));
     }
 
+    /**
+     * Yet quick & dirty
+     *
+     * @param mixed $value
+     * @return P7String
+     */
     public function sanitizeP7String(mixed $value): P7String
     {
         if(! $value instanceof P7String) {

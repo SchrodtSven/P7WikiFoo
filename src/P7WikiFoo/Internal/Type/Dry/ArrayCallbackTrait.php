@@ -51,7 +51,6 @@ trait ArrayCallbackTrait
     {
 
         $this->prepareForQuoting()->walk(function (&$item) use($mark) {
-            $item = $this->sanitizeP7String($item);
             $item->quote($mark);
         });
         return $this;

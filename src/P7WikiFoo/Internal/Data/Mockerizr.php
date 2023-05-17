@@ -127,8 +127,10 @@ class Mockerizr
          
     }
 
-    public function getRandomEnclosingMark():
+    public function getRandomEnclosingMark(): string
     {
-        
+        $marks = ['<', '(', '[', '{'];
+        $randomizr = SingletonFactory::get(Randomizer::class);
+        return $marks[$randomizr->pickArrayKeys($marks, 1)];
     }
 }

@@ -11,4 +11,10 @@ declare(strict_types=1);
 
 
 require_once 'src/P7WikiFoo/App.php';
+header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+header('X-Powered-By: P7WikiFoo API v. 0.1');
+var_dump(headers_sent());
+var_dump(headers_list());
+var_dump($_SERVER);
 

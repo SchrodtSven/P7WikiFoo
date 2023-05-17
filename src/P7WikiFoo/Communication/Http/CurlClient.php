@@ -30,6 +30,7 @@ class CurlClient implements ClientInterface
 
     private P7Array $parameters;
 
+    private Parser $parser;
 
     /**
      * Used HTTP request method
@@ -53,7 +54,8 @@ class CurlClient implements ClientInterface
         }
         $this->uri = $uri;
         $this->parameters = new P7Array([]);
-        $this->curlHandle = curl_init();
+        $this->curlHandle = \curl_init();
+        $this->parser = new Parser;
 
     }
 
@@ -65,28 +67,35 @@ class CurlClient implements ClientInterface
         //Sending header within response
 
         // Setting URI for current request
-        $this->setCurlOption(CURLOPT_URL, $this->uri);
+        $this->setCurlOption(\CURLOPT_URL, $this->uri);
 
         // Returning response instead of writing to STDOUT
-        $this->setCurlOption(CURLOPT_RETURNTRANSFER, true);
+        $this->setCurlOption(\CURLOPT_RETURNTRANSFER, true);
 
         // Setting timeout for connection creation
-        $this->setCurlOption(CURLOPT_CONNECTTIMEOUT, $this->ttl);
+        $this->setCurlOption(\CURLOPT_CONNECTTIMEOUT, $this->ttl);
 
         // Reading response headers
         $this->setCurlOption( CURLINFO_HEADER_OUT, 1);
 
         // Setting TTL for running cUrl functions
-        $this->setCurlOption(CURLOPT_TIMEOUT, $this->ttl);
+        $this->setCurlOption(\CURLOPT_TIMEOUT, $this->ttl);
 
         // Reading response headers
-        $this->setCurlOption(CURLOPT_HEADER, 1);
+        $this->setCurlOption(\CURLOPT_HEADER, 1);
 
         // Disabling SSL peer check
-        $this->setCurlOption(CURLOPT_SSL_VERIFYPEER, false);
+        $this->setCurlOption(\CURLOPT_SSL_VERIFYPEER, false);
 
     }
 
+    /**
+     * Processing HTTP request
+     *
+     * @param string $uri
+     * @param string $method
+     * @return self
+     */
     public function process(string $uri, string $method = Protocol::METHOD_GET) : self
     {
 
@@ -110,7 +119,7 @@ class CurlClient implements ClientInterface
             case Protocol::METHOD_PATCH:
             case 'PUT':
                 // For PUT, PATCH and POST we send parameters in payload
-                $this->setCurlOption(CURLOPT_POSTFIELDS, $queryString);
+                $this->setCurlOption(\CURLOPT_POSTFIELDS, $queryString);
                 break;
 
         }
@@ -120,12 +129,23 @@ class CurlClient implements ClientInterface
         return $this;
     }
 
-    
+    /**
+     * Getting current HTTP method
+     *
+     * @return string
+     */
     public function getMethod(): string
     {
         return $this->method;
     }
 
+    /**
+     * Setting cUrl option
+     *
+     * @param integer $option
+     * @param [type] $value
+     * @return void
+     */
     public function setCurlOption(int $option, $value)
     {
         curl_setopt($this->curlHandle, $option, $value);
@@ -141,34 +161,68 @@ class CurlClient implements ClientInterface
         return $this;
     }
 
+    /**
+     * Setting named parameters
+     *
+     * @param array $parameters
+     * @return self
+     */
     public function setParameters(array $parameters): self
     {
         $this->parameters = new P7Array($parameters);
         return $this;
     }
 
+    /**
+     * GEtting parameters
+     *
+     * @return P7Array
+     */
     public function getParameters(): P7Array
     {
         return $this->parameters;
     }
 
+    /**
+     * Setting named parameter
+     *
+     * @param string $name
+     * @param string $value
+     * @return self
+     */
     public function setParameter(string $name, string $value): self
     {
         $this->parameters[$name] = $value;
         return $this;
     }
 
-    public function getParameter(string $name):string
+    /**
+     * Getting named parameter
+     *
+     * @param string $name
+     * @return string
+     */
+    public function getParameter(string $name): string
     {
         return $this->parameters[$name];
     }
 
-   
+   /**
+    * Getting URI
+    *
+    * @return string
+    */
     public function getUri(): string
     {
         return $this->uri;
     }
 
+    /**
+     * Setting URI
+     *
+     * @param string $uri
+     * @return self
+     */
     public function setUri(string $uri): self
     {
         $this->uri = $uri;
@@ -176,48 +230,92 @@ class CurlClient implements ClientInterface
     }
 
   
+    /**
+     * Getter for TTL
+     *
+     * @return integer
+     */
     public function getTtl(): int
     {
         return $this->ttl;
     }
 
-  
+    /**
+     *  Setter for TTL
+     *
+     * @param integer $ttl
+     * @return self
+     */
     public function setTtl(int $ttl): self
     {
         $this->ttl = $ttl;
         return $this;
     }
 
-
+    /**
+     * Getter for response
+     *
+     * @return Response
+     */
     public function getResponse(): Response
     {
         return $this->response;
     }
 
+    /**
+     * Send POST request
+     *
+     * @param string $uri
+     * @return self
+     */
     public function post(string $uri = ''): self
     {
         $this->process($uri, Protocol::METHOD_POST);
         return $this;
     }
 
+    /**
+     * Send PUT request
+     *
+     * @param string $uri
+     * @return self
+     */
     public function put(string $uri = ''): self
     {
         $this->process($uri, Protocol::METHOD_PUT);
         return $this;
     }
 
+    /**
+     * Send GET request
+     *
+     * @param string $uri
+     * @return self
+     */
     public function get(string $uri = ''): self
     {
         $this->process($uri, Protocol::METHOD_GET);
         return $this;
     }
 
+    /**
+     * Send DELETE request
+     *
+     * @param string $uri
+     * @return self
+     */
     public function delete(string $uri = ''): self
     {
         $this->process($uri, Protocol::METHOD_DELETE);
         return $this;
     }
 
+    /**
+     * Send PATCH request
+     *
+     * @param string $uri
+     * @return self
+     */
     public function patch(string $uri = ''): self
     {
         $this->process($uri, Protocol::METHOD_PATCH);

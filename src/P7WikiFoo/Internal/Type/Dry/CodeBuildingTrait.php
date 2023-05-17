@@ -19,13 +19,34 @@ use SchrodtSven\P7WikiFoo\Internal\Data\NamedSymbols;
 trait CodeBuildingTrait
 {
 
+    /**
+     * Indent mark ()' ' by default)
+     *
+     * @var string
+     */
     protected string $indentMark = ' ';
 
+    /**
+     * Width of indentation
+     *
+     * @var integer
+     */
     protected int $indentWidth = 4;
 
+    /**
+     * Level of indentation
+     *
+     * @var integer
+     */
     protected int $indentLevel = 1;
 
 
+    /**
+     * Indenting content by $level or current self::indentLevel
+     *
+     * @param int|null $level
+     * @return self
+     */
     public function indent(?int $level = null): self
     {
             if(is_null($level))
@@ -61,6 +82,12 @@ trait CodeBuildingTrait
         return $this;
     }
 
+    /**
+     * Quote current content with $mark and corresponing end character
+     *
+     * @param string $mark
+     * @return self
+     */
     public function quote(string $mark = NamedSymbols::SINGLE_QUOTES_START): self
     {
         $this->embrace($mark);
