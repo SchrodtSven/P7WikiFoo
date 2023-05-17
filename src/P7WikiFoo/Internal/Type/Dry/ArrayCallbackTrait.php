@@ -2,8 +2,11 @@
 /**
  * Wrapper trait for reusage of native functions applying  callbacks/closures on each element
  * 
- * - array_walk
- * - array_map
+ *  - array_walk
+ *  - array_map
+ *  - custom functions for 
+ *      - trimming
+ *      - quoting
  * 
  * & some array walking/mapping custom functions
  * 
@@ -49,8 +52,7 @@ trait ArrayCallbackTrait
 
     public function quote(string $mark = NamedSymbols::SINGLE_QUOTES_START): self
     {
-
-        $this->prepareForQuoting()->walk(function (&$item) use($mark) {
+       $this->prepareForQuoting()->walk(function (&$item) use($mark) {
             $item->quote($mark);
         });
         return $this;
@@ -65,4 +67,13 @@ trait ArrayCallbackTrait
         return $this;
     }
 
+    public function map(?callable $callback = null): self
+    {
+        return new self(array_map($callback, $this->current));
+    }
+
+    public function mapMultiple(?callable $callback = null, array ...$arrays): self
+    {
+        return new self(array_map($callback, $this->current, $arrays));
+    }
 }

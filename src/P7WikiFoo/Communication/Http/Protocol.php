@@ -13,9 +13,9 @@ declare(strict_types=1);
  * 
  */
 
-namespace P7WikiFoo\Communication\Http;
+namespace SchrodtSven\P7WikiFoo\Communication\Http;
 
-final class Protocol
+class Protocol
 {
     public const VERSION_10 = '1.0';
 

@@ -12,7 +12,7 @@ declare(strict_types=1);
  * 
  */
 
-namespace P7WikiFoo\Communication\Http;
+namespace SchrodtSven\P7WikiFoo\Communication\Http;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 
 interface  ClientInterface

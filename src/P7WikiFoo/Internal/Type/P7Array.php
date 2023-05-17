@@ -41,6 +41,13 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 
     }
 
+    /**
+     * Creating instance statically from content of file
+     *
+     * @param string $filename
+     * @param boolean $autoTrim
+     * @return self
+     */
     public static function createFromFile(string $filename, bool $autoTrim = true): self
     {
         if(!\file_exists($filename)) {
@@ -55,24 +62,44 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         return $tmp;
     }
 
+    /**
+     * Creating instance statically from content of parsed JSON file
+     *
+     * @param string $filename
+     * @param boolean $asArray
+     * @return self
+     */
     public static function createFromJsonFile(string $filename, bool $asArray = true): self
     {
         
         return self::createFromJson(file_get_contents($filename), $asArray);
     }
 
+    /**
+     * Creating instance statically from content JSON string
+     *
+     * @param string $json
+     * @param boolean $asArray
+     * @return self
+     */
     public static function createFromJson(string $json, bool $asArray = true): self
     {
         return new self(json_decode($json, $asArray));
     }
 
+    /**
+     * JOining elements with $glue
+     *
+     * @param string $glue
+     * @return P7String
+     */
     public function join(string $glue): P7String
     {
         return new P7String(implode($glue, $this->current));
     }
     
     /**
-     * Reove ,ultiple values from current content
+     * Remove multiple values from current content
      *
      * @param [type] $flags
      * @return self
@@ -144,5 +171,48 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
         $randomizr = SingletonFactory::get(Randomizer::class);
         $this->current = $randomizr->shuffleArray($this->current);
         return $this;
+    }
+
+    /**
+     * Checking if current content is a list
+     *
+     * @return boolean
+     */
+    public function isList(): bool
+    {
+        return array_is_list($this->current);
+    }
+
+    /**
+     * Checking if $value is element in current content 
+     *
+     * @param mixed $value
+     * @return boolean
+     */
+    public function has(mixed $value): bool
+    {
+        return in_array($value, $this->current);
+    }
+
+    /**
+     * Checking if $key is existing key of current content 
+     *
+     * @param string $key
+     * @return boolean
+     */
+    public function hasKey(string $key): bool
+    {
+        return array_key_exists($key, $this->current);
+    }
+
+    /**
+     * Checking if $index is existing index of current content 
+     *
+     * @param integer $index
+     * @return boolean
+     */
+    public function hasIndex(int $index): bool
+    {
+        return array_key_exists($index, $this->current);
     }
 }

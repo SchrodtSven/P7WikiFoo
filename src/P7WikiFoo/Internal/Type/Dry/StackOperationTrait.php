@@ -11,7 +11,6 @@
  * @since 2023-05-10
  */
 
-
 namespace SchrodtSven\P7WikiFoo\Internal\Type\Dry;
 
 trait StackOperationTrait

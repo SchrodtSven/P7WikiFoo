@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Getting array of metasyntacic & phantastic variable names
+ * Getting array of metasyntactic & phantastic variable names
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

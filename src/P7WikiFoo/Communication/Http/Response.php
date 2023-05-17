@@ -12,11 +12,11 @@ declare(strict_types=1);
  * 
  */
 
-namespace P7WikiFoo\Communication\Http;
+namespace SchrodtSven\P7WikiFoo\Communication\Http;
 
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
-use P7WikiFoo\Communication\Http\Protocol;
+
 
 class Response
 {
@@ -67,6 +67,7 @@ class Response
     public function setParsedHeader(string $name, string $value): self
     {
         $this->parsedHeaders[$name] = $value;
+        header(sprintf('%s: %s', $name, $value));
         return $this;
     }
 

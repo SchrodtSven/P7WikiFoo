@@ -28,6 +28,11 @@ trait ArraySortTrait
         sort($this->current, $flags);
         return $this;
     }
+
+    public function multiSort(mixed $sortOrder = \SORT_ASC, $sortFlags = \SORT_REGULAR, mixed ...$rest): bool
+    {
+        return array_multisort($this->current, $sortOrder, $sortFlags, ...$rest);
+    }
  
 
 }
