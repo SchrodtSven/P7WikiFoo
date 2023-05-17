@@ -43,5 +43,6 @@ class EndpointSettings
      */
     public const FORMAT_JSON_SUFFIX = 'format=json';
     
-    
+    // 'https://www.wikidata.org/wiki/Special:EntityData/Q113204515.json'
+    public const GENERIC_ENTITY_URI_JSON = 'https://www.wikidata.org/wiki/Special:EntityData/%s.json';
 }

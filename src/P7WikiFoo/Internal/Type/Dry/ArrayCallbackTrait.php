@@ -4,14 +4,12 @@
  * 
  *  - array_walk
  *  - array_map
- *  - custom functions for 
+ *  -  & some array walking/mapping custom functions
  *      - trimming
  *      - quoting
+ *      - ...
  * 
- * & some array walking/mapping custom functions
- * 
- * 
- * Providing possibility of accessing objects as arrays
+ *
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

@@ -54,4 +54,26 @@ trait TypeConverterTrait
 
         return $value;
     }
+
+    /**
+     * Yet quick & dirty
+     *
+     * @param mixed $value
+     * @return P7String
+     */
+    public function sanitizeP7Array(mixed $value): P7Array
+    {
+        if(! $value instanceof P7Array) {
+            
+            //@FIXME -> \Iterator, \Generator, callable etc.
+            if(is_array($value)) {
+                $value = new P7Array($value);
+            } else {
+                $value = new P7Array([$value]);
+            }
+            
+        }
+
+        return $value;
+    }
 }
