@@ -85,6 +85,12 @@ class BeggarmanParser
         return $this;
     }
 
+    /**
+     * Loading tpl file 
+     *
+     * @param string $tplName
+     * @return self
+     */
     public function loadTpl(string $tplName): self
     {
         $this->tpl = $this->p7stringifyFile(

@@ -13,12 +13,8 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal\Data;
 
-use \Iterator;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
-use SchrodtSven\P7WikiFoo\App;
-use SchrodtSven\P7WikiFoo\Internal\File\FileError;
-use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ValueTrait;
 

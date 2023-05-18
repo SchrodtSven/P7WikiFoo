@@ -30,6 +30,12 @@ class CodeTpl
             ? %s 
             : %s';
 
+    public function printL(string|P7String $assignment): P7String
+    {
+        return $this->finish($assignment);
+    }
+    
+
     public function finish(P7String $assignment): P7String
     {
         return $assignment->append(';' . PHP_EOL);

@@ -148,9 +148,16 @@ Version  0.2 - in development
 </pre>
 
 
-## STATS     100 files     117 text files.
-classified 108 filesDuplicate file check 108 files (104 known unique)Unique:      100 files                                               107 unique files.                              
-Counting:  100      14 files ignored.
+## STATS     
+<pre><code>
+     100 files
+     117 text files.
+classified 108 files
+Duplicate file check 108 files (104 known unique)
+Unique:      100 files                                          
+     107 unique files.                              
+Counting:  100
+      14 files ignored.
 
 github.com/AlDanial/cloc v 1.96  T=0.06 s (1909.4 files/s, 193543.5 lines/s)
 -------------------------------------------------------------------------------
@@ -192,3 +199,5 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 Time: 00:00.091, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
+</code>
+</pre>

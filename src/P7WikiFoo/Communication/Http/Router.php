@@ -22,9 +22,13 @@ declare(strict_types=1);
 namespace SchrodtSven\P7WikiFoo\Communication\Http;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
+use SchrodtSven\P7WikiFoo\Communication\Http\Request;
 
 class Router
 {
-    
+    public function __construct(private Request $request, private string $relUri = '')
+    {
+        
+    }   
 
 }
