@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal\Data;
 
-use Iterator;
+use \Iterator;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 use SchrodtSven\P7WikiFoo\App;
@@ -32,9 +32,11 @@ class CodeBuilder
         $name = $this->sanitizeP7String($name);
         $data = $this->sanitizeP7Array($data);
         $data->walk(function(&$item, $key) use($isList) {
-            $item = ($isList)   ?  $this->literalize($item)
-                                : $this->literalize($key) .' => ' . $this->literalize($item);
-        });
+                                                $item = ($isList)   
+                                                    ? $this->literalize($item)
+                                                    : $this->literalize($key) .' => ' . $this->literalize($item);
+                    }
+                 );
 
         return new P7String(sprintf(
                                     CodeTpl::ARRAY_DEFINITION,

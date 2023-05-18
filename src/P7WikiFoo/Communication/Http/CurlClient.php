@@ -52,9 +52,10 @@ class CurlClient implements ClientInterface
         if (!function_exists('curl_version')) {
             throw new \ErrorException('Extension cURL needed!');
         }
-        $this->uri = $uri;
+        $this->init();
+        $this->setUri($uri);
         $this->parameters = new P7Array([]);
-        $this->curlHandle = \curl_init();
+        
         $this->parser = new Parser;
 
     }
@@ -63,12 +64,12 @@ class CurlClient implements ClientInterface
     {
 
 
-        $this->setCurlOption(\CURLOPT_CUSTOMREQUEST, $this->method);
-        //Sending header within response
+       
+        // Creating cUrl handle
 
-        // Setting URI for current request
-        $this->setCurlOption(\CURLOPT_URL, $this->uri);
+        $this->curlHandle = \curl_init();
 
+        
         // Returning response instead of writing to STDOUT
         $this->setCurlOption(\CURLOPT_RETURNTRANSFER, true);
 
@@ -87,6 +88,9 @@ class CurlClient implements ClientInterface
         // Disabling SSL peer check
         $this->setCurlOption(\CURLOPT_SSL_VERIFYPEER, false);
 
+        // Setting UA
+        $this->setCurlOption(\CURLOPT_USERAGENT, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/113.0');
+
     }
 
     /**
@@ -100,10 +104,8 @@ class CurlClient implements ClientInterface
     {
 
         $this->setMethod($method);
-
-        if ($uri != '') {
-            $this->uri = $uri;
-        }
+        if($uri!='')
+            $this->setUri($uri);
         
         $queryString = http_build_query($this->parameters->raw());
         switch ($this->method) {
@@ -111,19 +113,19 @@ class CurlClient implements ClientInterface
             case Protocol::METHOD_GET:
             case Protocol::METHOD_DELETE;
                 // For GET and DELETE we send parameters within URI as query string
+                //@FIXME
                 $this->uri .= '?' . $queryString;
                 break;
 
             case Protocol::METHOD_POST:
             case Protocol::METHOD_PUT:    
             case Protocol::METHOD_PATCH:
-            case 'PUT':
                 // For PUT, PATCH and POST we send parameters in payload
                 $this->setCurlOption(\CURLOPT_POSTFIELDS, $queryString);
                 break;
 
         }
-        $this->init();
+       
         $this->response = Response::parseResponseString(curl_exec($this->curlHandle));
         $this->response->setStatusCode(curl_getinfo($this->curlHandle, CURLINFO_HTTP_CODE));
         return $this;
@@ -158,6 +160,7 @@ class CurlClient implements ClientInterface
     public function setMethod(string $method): self
     {
         $this->method = strtoupper($method);
+        $this->setCurlOption(\CURLOPT_CUSTOMREQUEST, $this->method);
         return $this;
     }
 
@@ -225,7 +228,11 @@ class CurlClient implements ClientInterface
      */
     public function setUri(string $uri): self
     {
+        // Setting URI for current request
+        // as member
         $this->uri = $uri;
+        // in cUrl
+        $this->setCurlOption(\CURLOPT_URL, $this->uri);
         return $this;
     }
 
