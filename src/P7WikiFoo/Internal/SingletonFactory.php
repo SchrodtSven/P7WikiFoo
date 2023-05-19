@@ -16,10 +16,7 @@ declare(strict_types=1);
  * @since 2023-05-16
  */
 
-
 namespace SchrodtSven\P7WikiFoo\Internal;
-use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
-use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 class SingletonFactory
 {
@@ -32,7 +29,11 @@ class SingletonFactory
     public static array $container = [
         \Random\Randomizer::class => null,
         \SchrodtSven\P7WikiFoo\Internal\Data\DataSupplier::class => null,
-        \SchrodtSven\P7WikiFoo\Internal\Data\Mockerizr::class => null
+        \SchrodtSven\P7WikiFoo\Internal\Data\Mockerizr::class => null,
+        \SchrodtSven\P7WikiFoo\Communication\Http\Request::class => null,
+        \SchrodtSven\P7WikiFoo\Communication\Http\Response::class => null,
+        \SchrodtSven\P7WikiFoo\Communication\Http\Router => null,
+
 
     ];
 
@@ -49,7 +50,4 @@ class SingletonFactory
 
         return self::$container[$containerKey];
     }
-
-    
-
 }

@@ -104,6 +104,16 @@ class BeggarmanParser
         return $this;
     }
 
+    /**
+     * Adding line with tag to DocBlock - e.g.
+     * <code>
+     *  * @param int $foo
+     * </code>
+     *
+     * @param string $tag
+     * @param string $value
+     * @return void
+     */
     public function addTagLine(string $tag, string $value)
     {
         $this->tags->push(sprintf(TplContainer::DOC_BLOCK_TAG, $tag, $value));

@@ -17,10 +17,6 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 
 class P7StringTest extends P7TestCase
 {
-    
-
-
-    //['Armando', 'Eilers', 'Armando Eilers', 'eilers.armando@example.org', '\"', '\"', '\"Eilers\"'],
     /**
      * @dataProvider basicProvider
      *
@@ -40,7 +36,7 @@ class P7StringTest extends P7TestCase
         string $mail,
         string $start, 
         string $end,
-        string $embraced)
+        string $embraced): void
     {
         $this->assertSame($first . ' ' . $last, (string) (new P7String($first))->append(' ')->append($last));
         $this->assertSame($both, (string) (new P7String($first))->append(' ')->append($last));

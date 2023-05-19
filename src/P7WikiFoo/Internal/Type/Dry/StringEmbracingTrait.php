@@ -50,6 +50,4 @@ trait StringEmbracingTrait
     {
         return (sprintf('%s%s%s', $start, $string, $this->locateEnd($start)));
     }
-   
-    
 }
