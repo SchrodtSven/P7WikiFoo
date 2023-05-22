@@ -15,6 +15,7 @@ declare(strict_types=1);
 
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type;
+use Random\Randomizer;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayAccessTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayCallbackTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayPartsTrait;
@@ -23,7 +24,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\Dry\StackOperationTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\TypeConverterTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArraySortTrait;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory; 
-use Random\Randomizer;
+use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayCustomTrait;
 
 class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
 {
@@ -35,6 +36,7 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     use ArrayCallbackTrait;
     use TypeConverterTrait;
     use ArraySortTrait;
+    use ArrayCustomTrait;
 
     public function __construct(protected array $current = [], protected array $previous = [])
     {
@@ -215,4 +217,5 @@ class P7Array implements \ArrayAccess, \Iterator, \Countable, StackInterface
     {
         return array_key_exists($index, $this->current);
     }
+
 }

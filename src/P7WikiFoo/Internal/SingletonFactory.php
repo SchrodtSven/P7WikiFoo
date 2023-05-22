@@ -32,7 +32,7 @@ class SingletonFactory
         \SchrodtSven\P7WikiFoo\Internal\Data\Mockerizr::class => null,
         \SchrodtSven\P7WikiFoo\Communication\Http\Request::class => null,
         \SchrodtSven\P7WikiFoo\Communication\Http\Response::class => null,
-        \SchrodtSven\P7WikiFoo\Communication\Http\Router => null,
+        \SchrodtSven\P7WikiFoo\Communication\Http\Router::class => null,
 
 
     ];

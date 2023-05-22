@@ -62,6 +62,13 @@ class App
     public const CHEAP_TPL_DIR = 'src/P7WikiFoo/Tools/Tpl/';
 
     /**
+     * Phtml template directory
+     * 
+     * @var string
+     */
+    public const PHTML_TPL_DIR = 'src/P7WikiFoo/App/Views/';
+
+    /**
      * Directory with raw mocking data
      * 
      * @var string

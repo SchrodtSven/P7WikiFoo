@@ -17,7 +17,7 @@ namespace SchrodtSven\P7WikiFoo\Communication\Http;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 
 
-class Request
+class Request implements RequestInterface
 {
     private ?string $requestUri;
     private ?string $requestMethod;
@@ -42,7 +42,7 @@ class Request
         switch ($this->requestMethod) {
             case  Protocol::METHOD_PUT:
             case  Protocol::METHOD_PATCH:
-                parse_str(file_get_contents('php://input'), $tmp);
+                mb_parse_str(file_get_contents('php://input'), $tmp);
                 break;
             case Protocol::METHOD_GET:
                 $tmp = $_GET;
