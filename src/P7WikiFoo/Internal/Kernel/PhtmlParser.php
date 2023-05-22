@@ -19,7 +19,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 class PhtmlParser implements \Stringable
 {
     /**
-     * Container array object holding contents to be rendered
+     * Container array object holding contents to be rendered 
      *
      * @var P7Array
      */
@@ -163,7 +163,7 @@ class PhtmlParser implements \Stringable
     public function render(): P7String
     {
         // Starting output buffering
-        ob_start();
+        \ob_start();
 
         // include template
         require App::PHTML_TPL_DIR 
@@ -172,10 +172,10 @@ class PhtmlParser implements \Stringable
             . self::TPL_SUFFIX;
 
         // save buffered output    
-        $out = ob_get_contents();
+        $out = \ob_get_contents();
         
         // stop output buffering
-        ob_end_clean(); 
+        \ob_end_clean(); 
         return $this->rendered = new P7String($out);
     } 
 

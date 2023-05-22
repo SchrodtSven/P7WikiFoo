@@ -58,7 +58,7 @@ trait StringTransformingTrait
      *
      * @param string $string
      * @param boolean $lowercase
-     * @return void
+     * @return self
      */
     public function snakify(bool $lowercase= true, string $glue = NamedSymbols::UNDERSCORE): self
     {

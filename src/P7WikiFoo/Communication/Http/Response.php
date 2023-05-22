@@ -35,11 +35,6 @@ class Response
         $this->parsedHeaders = new P7Array([]);
     }
 
-    public static function factory()
-    {
-        return new self();
-    }
-
     /**
      * @return string
      */
@@ -148,7 +143,12 @@ class Response
         return $this;
     }
 
-
+    /**
+     * Parsing response string
+     *
+     * @param string $response
+     * @return self
+     */
     public static function parseResponseString(string $response): self
     {
         $instance = new self();

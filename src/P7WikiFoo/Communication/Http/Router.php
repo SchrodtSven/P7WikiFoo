@@ -3,7 +3,7 @@
 declare(strict_types=1);
 /**
  * Class managing HTTP routing:
- *   uri (http|https://foo/bar/..)  => $SUB\NAMESPACE\$Class::method(...parameters)
+ *  - uri (http|https://foo/bar/..)  => $SUB\NAMESPACE\$Class::method(...parameters)
  * 
  * @TODO Extend routing to work in sub directories of $DOCUMENT_ROOT!!!
  * 
@@ -19,6 +19,8 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 use SchrodtSven\P7WikiFoo\Communication\Http\Request;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
+use SchrodtSven\P7WikiFoo\App;
+use SchrodtSven\P7WikiFoo\App\Controllers\ActionController;
 
 class Router
 {
@@ -54,6 +56,11 @@ class Router
         $this->dispatch();
     }   
 
+    /**
+     * Dispatching HTTP route to Action controller / action / parameters
+     *
+     * @return void
+     */
     private function dispatch()
     {
         $tmp = (new P7String($this->relUri))->splitBy('/')->unsetIfEmptyAtMargins();
@@ -78,21 +85,28 @@ class Router
         $this->parseParams($tmp);
     }
 
+    /**
+     * Parsing parameters from URI
+     *
+     * @param P7Array $data
+     * @return void
+     */
     public function parseParams(P7Array $data): void
     {
         // @FIXME - if (count($data) % 2 !==0 ) || === boolean --> codify!
+        // @FIXME - $_GET/$_POST/PUT etc.
         $this->params = new P7Array();
         while(count($data)) {
             $this->params[$data->shift()] = $data->shift();
         }
     }
 
-    public function getController(): string
+    public function getControllerName(): string
     {
         return $this->controller;
     }
 
-    public function getAction(): string
+    public function getActionName(): string
     {
         return $this->action;
     }
@@ -100,5 +114,26 @@ class Router
     public function getParams(): P7Array
     {
         return $this->params;
+    }
+
+    public function getActionController(): ActionController
+    {
+        
+        return new (App::ACTION_CONTROLLER_NAMESPACE . $this->getControllerName() . App::CONTROLLER_SUFFIX);
+    }
+
+    public function getActionControllerActionName(): string
+    {
+        return $this->getActionName() . App::ACTION_SUFFIX;
+    }
+
+    /**
+     * Getter for curent HTTP request object
+     *
+     * @return RequestInterface
+     */
+    public function getRequest(): RequestInterface
+    { 
+        return $this->request; 
     }
 }

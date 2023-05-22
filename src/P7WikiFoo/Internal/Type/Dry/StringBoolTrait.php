@@ -6,7 +6,7 @@
  *  - ends, 
  *  - contains,
  *  - matches regular expression,
- *  -  ...
+ *  - ...
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

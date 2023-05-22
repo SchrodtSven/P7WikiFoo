@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 /**
- * Very basic template parser replacing placeholders ({{PLACE_HOLDER_NAME}} by default)  
+ *  
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
  * @package P7WikiFoo
- * @version 0.1
+ * @version 0.2
  * @since 2023-05-11
- * @deprecated 0.2
+ * @deprecated since 0.2
  */
 
 

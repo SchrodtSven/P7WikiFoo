@@ -2,11 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Factory creating html:
- * 
- *  - attributes
- *  - elements 
- *  - structs
+ * HTML syntax describing class
  * 
  * 
  * @author Sven Schrodt<sven@schrodt.club>

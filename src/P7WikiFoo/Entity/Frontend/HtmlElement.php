@@ -43,21 +43,33 @@ class HtmlElement
     protected bool $isEmpty = false;
 
     public function getName()
-    { return $this->name; }
+    { 
+        return $this->name; 
+    }
 
     public function setName($name): self 
-    { $this->name = $name; return $this; }
+    { 
+        $this->name = $name; return $this; 
+    }
     
     public function getContent(): P7Array 
-    { return $this->content; }
+    { 
+        return $this->content; 
+    }
     
     public function setContent(P7Array $content): self 
-    { $this->content = $content; return $this; }
+    { 
+        $this->content = $content; return $this; 
+    }
 
     public function getAttributes(): HtmlAttributes
-    { return $this->attributes; }
+    { 
+        return $this->attributes; 
+    }
 
     public function setAttributes(HtmlAttributes $attributes): self 
-    { $this->attributes = $attributes; return $this; }
+    { 
+        $this->attributes = $attributes; return $this; 
+    }
 }
 

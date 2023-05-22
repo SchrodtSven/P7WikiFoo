@@ -21,6 +21,7 @@ class DirectoryFilter
     public const FILTER_FOR_FILE = 1;
 
     public const FILTER_FOR_PATH = 2;
+    
 
     public const FILTER_MODE_STARTS = 0;
 

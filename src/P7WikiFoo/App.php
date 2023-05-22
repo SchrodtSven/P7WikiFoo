@@ -12,9 +12,7 @@ declare(strict_types=1);
  * @since 2023-05-10
  */
 
-
 namespace SchrodtSven\P7WikiFoo;
-
 
 class App
 {
@@ -81,6 +79,27 @@ class App
      * @var string
      */
     public const MOCK_HTTP_CFG = 'src/TriviaGame/Internal/mock_http.php';
+
+    /**
+     * Sub namespace for action controllers
+     * 
+     * @var string
+     */
+    public const ACTION_CONTROLLER_NAMESPACE = '\SchrodtSven\P7WikiFoo\App\Controllers\\';
+
+    /**
+     * Suffix for action names
+     * 
+     * @var string 
+     */
+    public const ACTION_SUFFIX = 'Action';
+
+    /**
+     * Suffix for controller names
+     * 
+     * @var string 
+     */
+    public const CONTROLLER_SUFFIX = 'Controller';
 
     /**
      * Registering AL

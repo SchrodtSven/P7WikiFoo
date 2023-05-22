@@ -21,6 +21,6 @@ return [
     'Noot', 'Nyarlathotep', 'Octan', 'Omm', 'Oogle', 'Paperino', 'Pioh', 'Pippo', 'Plugh', 'Pluto', 
     'Pommesfrites', 'Quuuux', 'Quuux', 'Quux', 'Qux', 'Razrram', 'Roo', 'Shme', 'Shub-niggurath', 
     'Soo', 'Spamm', 'Spqr', 'Tata', 'Thud', 'Titi', 'Trudy', 'Tsathoggua', 'Tutu', 'Waldo', 
-    'Wibble', 'Widget', 'Wombat', 'Xenomorph', 'Xil', 'Xilo', 'Xyzzy', 'Ymoo', 'Yog‑sothoth', 
+    'Wibble', 'Widget', 'Wombat', 'Xenomorph', 'Xil', 'Xilo', 'Xul', 'Xyzzy', 'Ymoo', 'Yog‑sothoth', 
     'Znef', 'Zork', 'Zot', 'Zulu', 'Zxc'
     ];

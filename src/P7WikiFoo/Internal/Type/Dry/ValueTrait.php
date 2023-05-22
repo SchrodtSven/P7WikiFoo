@@ -20,7 +20,7 @@ trait ValueTrait
     /**
      * Creating literal from $value for assignment
      */
-    public function literalize(mixed $value): mixed
+    public function literalize(mixed $value): P7String
     {
         return match(true) {
             (is_string($value)) => (new P7String($value))->quote(),

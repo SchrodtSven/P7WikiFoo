@@ -14,37 +14,56 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal\Kernel;
 
+use Error;
 use SchrodtSven\P7WikiFoo\Communication\Http\Router;
 use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlAttributes;
 use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlElement;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
+use SchrodtSven\P7WikiFoo\App;
+use SchrodtSven\P7WikiFoo\App\Controllers\ActionController;
 
 class FrontController
 {
+    /**
+     * Instance of HTTP router
+     *
+     * @var Router
+     */
     private Router $router;
 
+    /**
+     * Action controller to be instantiated
+     *
+     * @var ActionController
+     */
+    private ActionController $controller;
+
+    /**
+     * Constructor function
+     */
     public function __construct()
     {
         $this->router = SingletonFactory::get(Router::class);
+        try {
+            $this->controller = $this->router->getActionController();
+        } catch(Error $err) {
+            echo '404 -' . $err->getMessage();
+        }
         $this->run();
     }    
 
+    /**
+     * Running app
+     *
+     * @return void
+     */
     public function run(): void
     {
-        $parser = SingletonFactory::get(PhtmlParser::class);
-        $parser->setTplName('raw.table');
-        $parser->setTplType(PhtmlParser::RENDER_DOCLET);
-        $parser->rows = [
-                            ['action', $this->router->getController()],
-                            ['controller', $this->router->getAction()],
-                            ['params', var_export($this->router->getParams(), true)]
-        ];
-
-        $head = new HtmlElement('h1', 'Lorem Ipsum');
-        $att = new HtmlAttributes(['style' => 'color: blue']);
-        $head->setAttributes($att);
-        $parser->header = ($head->render());
-        $parser->footer = (new HtmlElement('pre', (new HtmlElement('h1', 'Ipsum Lorem'))->render()  ))->render();
-        echo $parser->render();
+        $action  = $this->router->getActionControllerActionName();
+        try {
+            $this->controller->$action($this->router->getParams()->raw());
+        } catch(\Error $e) {
+            echo $e->getMessage();
+        }
     }
 }

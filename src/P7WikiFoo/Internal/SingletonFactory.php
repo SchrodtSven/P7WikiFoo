@@ -36,7 +36,8 @@ class SingletonFactory
         \SchrodtSven\P7WikiFoo\Communication\Http\Response::class => null,
         \SchrodtSven\P7WikiFoo\Communication\Http\Router::class => null,
         \SchrodtSven\P7WikiFoo\Internal\Kernel\FrontController::class => null,
-        \SchrodtSven\P7WikiFoo\Internal\Kernel\PhtmlParser::class => null,
+        \SchrodtSven\P7WikiFoo\Internal\TextProcessing\BeggarmanParser::class => null,
+
 
 
     ];
@@ -56,7 +57,7 @@ class SingletonFactory
     }
 
     /**
-     * Checking if key in factory store exists
+     * Checking if key in factory container exists
      *
      * @param string $name
      * @return boolean

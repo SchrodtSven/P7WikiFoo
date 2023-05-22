@@ -20,14 +20,39 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 class CurlClient implements ClientInterface
 {
+    /**
+     * Current cUrl handle
+     *
+     * @var \CurlHandle
+     */
     private \CurlHandle $curlHandle;
 
+    /**
+     * Current URI
+     *
+     * @var string
+     */
     private string $uri;
 
+    /**
+     * Current response
+     *
+     * @var Response
+     */
     private Response $response;
 
+    /**
+     * Currently used parameters (GET|POST|PUT ...)
+     *
+     * @var P7Array
+     */
     private P7Array $parameters;
 
+    /**
+     * Instance of HTTP parser
+     *
+     * @var Parser
+     */
     private Parser $parser;
 
     /**
