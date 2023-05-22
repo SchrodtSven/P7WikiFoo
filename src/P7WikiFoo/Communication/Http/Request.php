@@ -61,7 +61,7 @@ class Request implements RequestInterface
     {
         return ($withQueryString)
             ? $this->requestUri
-            : parse_url($this->requestUri, PHP_URL_PATH);
+            : parse_url($this->requestUri, \PHP_URL_PATH);
     }
 
     public function setRequestUri(string $uri): self

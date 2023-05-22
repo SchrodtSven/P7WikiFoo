@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Class representing http response(s)
- * 
- * @FIXME -> use P7WikiFoo\Communication\Http\Parser!!
+ * HTTP client based on PHP's cUrl extension
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
@@ -47,6 +45,11 @@ class CurlClient implements ClientInterface
     private int $ttl = 500;
 
 
+    /**
+     * Constructor function
+     *
+     * @param string $uri
+     */
     public function __construct(string $uri = 'https://www.example.org/')
     {
         if (!function_exists('curl_version')) {
@@ -59,12 +62,15 @@ class CurlClient implements ClientInterface
         $this->parser = new Parser;
 
     }
-
+    
+    /**
+     * Initializing cUrl & preparing HTTP request
+     *
+     * @return void
+     */
     private function init()
     {
 
-
-       
         // Creating cUrl handle
 
         $this->curlHandle = \curl_init();

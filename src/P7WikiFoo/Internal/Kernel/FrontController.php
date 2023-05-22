@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Front controller bootstrapping HTTP routing - initializing app vi action controller(s)
+ * Front controller bootstrapping HTTP routing - initializing app via action controller(s)
  * 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace SchrodtSven\P7WikiFoo\Internal\Kernel;
 
 use SchrodtSven\P7WikiFoo\Communication\Http\Router;
-use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlAttribute;
+use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlAttributes;
 use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlElement;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 
@@ -41,7 +41,7 @@ class FrontController
         ];
 
         $head = new HtmlElement('h1', 'Lorem Ipsum');
-        $att = new HtmlAttribute(['style' => 'color: blue']);
+        $att = new HtmlAttributes(['style' => 'color: blue']);
         $head->setAttributes($att);
         $parser->header = ($head->render());
         $parser->footer = (new HtmlElement('pre', (new HtmlElement('h1', 'Ipsum Lorem'))->render()  ))->render();

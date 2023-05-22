@@ -14,19 +14,66 @@ namespace SchrodtSven\P7WikiFoo\Internal\Kernel;
 
 use SchrodtSven\P7WikiFoo\App;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
+use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 class PhtmlParser implements \Stringable
 {
+    /**
+     * Container array object holding contents to be rendered
+     *
+     * @var P7Array
+     */
     private P7Array $contentData;
 
+    /**
+     * Sub folder name for Document templates
+     * 
+     * @var string
+     */
     public const RENDER_DOCUMENT = 'Documents/';
+    
+    /**
+     * Sub folder name for Doclet (special partials of HTML document - header;footer;script;style;link;meta ) templates
+     * 
+     * @var string
+     */
     public const RENDER_DOCLET = 'Doclets/';
+
+    /**
+     * Sub folder name for Widget (date picker; calculator; colour picker etc.) templates
+     * 
+     * @var string
+     */
+    
     public const RENDER_WIDGET = 'Widgets/';
+    
+    /**
+     * Sub folder name for Partlet (other HTML snippets) templates
+     * 
+     * @var string
+     */
     public const RENDER_PARTLET = 'Partlets/';
 
+    /**
+     * File suffix for templates
+     * 
+     * @var string
+     */
     public const TPL_SUFFIX = '.phtml';
 
+    /**
+     * Rendering Type 
+     * 
+     * @see self::RENDER_*
+     *
+     * @var string
+     */
     private string $tplType = self::RENDER_DOCUMENT;
+
+    /**
+     * Result of last rendering process
+     */
+    private P7String $rendered;
 
 
     /**
@@ -113,17 +160,23 @@ class PhtmlParser implements \Stringable
      *
      * @return string
      */
-    public function render(): string
+    public function render(): P7String
     {
+        // Starting output buffering
         ob_start();
+
+        // include template
         require App::PHTML_TPL_DIR 
             . $this->tplType
             . $this->tplName
             . self::TPL_SUFFIX;
 
+        // save buffered output    
         $out = ob_get_contents();
+        
+        // stop output buffering
         ob_end_clean(); 
-        return $out;
+        return $this->rendered = new P7String($out);
     } 
 
     /**
@@ -146,7 +199,7 @@ class PhtmlParser implements \Stringable
      */
     public function __get(string $name): mixed
     {
-        return $this->contentData[$name] ?? null;
+        return $this->get($name) ?? null;
     }
     
     /**
@@ -179,5 +232,15 @@ class PhtmlParser implements \Stringable
     public function __toString(): string
     {
         return $this->render();
+    }
+
+    /**
+     * Returning result of last rendering process
+     *
+     * @return P7String
+     */
+    public function getRendered(): P7String 
+    { 
+        return $this->rendered; 
     }
 }

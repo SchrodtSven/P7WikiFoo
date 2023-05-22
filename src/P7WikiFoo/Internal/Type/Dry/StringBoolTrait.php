@@ -2,7 +2,11 @@
 /**
  * Trait wrapping native functions testing strings:
  * 
- * - begins, ends, contains
+ *  - begins, 
+ *  - ends, 
+ *  - contains,
+ *  - matches regular expression,
+ *  -  ...
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

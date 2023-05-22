@@ -20,9 +20,16 @@ use SchrodtSven\P7WikiFoo\App;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 use SchrodtSven\P7WikiFoo\Internal\TextProcessing\TplContainer;
 
-class BeggarmanParser
+class BeggarmanParser implements \Stringable
 {
     use TypeConverterTrait;
+
+    /**
+     * File suffix for templates
+     * 
+     * @var string
+     */
+    public const TPL_SUFFIX = '.tpl';
 
     private array $find;
 
@@ -46,11 +53,25 @@ class BeggarmanParser
         return (new self())->loadTpl($tplName);
     }
 
-    public function __set(string $name, mixed $value): void
+    /**
+     * Getter for properties
+     *
+     * @param string $name
+     * @return self
+     */
+    public function get(string $name): mixed 
     {
-        $this->set($name, $value);
+        return $this->find[$name] ?? null;
     }
 
+    /**
+     * Setter for properties
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return self
+     */
+    
     public function set(string $name, mixed $value): self
     {
         $this->find[] = sprintf($this->plHo, $name);
@@ -58,6 +79,11 @@ class BeggarmanParser
         return $this;
     }
 
+    /**
+     * Rendering template and return result as P7String instance
+     *
+     * @return P7String
+     */
     public function render(): P7String
     {
         if(count($this->tags)) {
@@ -97,7 +123,7 @@ class BeggarmanParser
                                             implode (   '', [
                                                                 App::CHEAP_TPL_DIR,
                                                                 $tplName,
-                                                                '.tpl'
+                                                                self::TPL_SUFFIX
                                                         ]
                                             )
         );
@@ -119,15 +145,61 @@ class BeggarmanParser
         $this->tags->push(sprintf(TplContainer::DOC_BLOCK_TAG, $tag, $value));
     }
 
+
+    /**
+     * Creating instance with given tpl file name
+     *
+     * @param string $tplName
+     * @return self
+     */
     public static function createFromFile(string $tplName): self
     {
         return (new self())->loadTpl($tplName);
     }
 
+    /**
+     * Ensuring self::tpl to be instance of P7String
+     *
+     * @return void
+     */
     private function sanitize(): void
     {
         if(! $this->tpl instanceof P7String) {
             $this->tpl = $this->p7stringify($this->tpl);
         }
+    }
+
+    /**
+     * Setter interceptor
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $name, mixed $value): void
+    {
+        $this->set($name, $value);
+    }
+
+     /**
+     * Getter interceptor
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     */
+    public function __get(string $name): mixed
+    {
+        return $this->get($name) ?? null;
+    }
+
+    /**
+     * Stringifying interceptor 
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return (string) $this->render();
     }
 }
