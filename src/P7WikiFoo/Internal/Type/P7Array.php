@@ -15,7 +15,7 @@ declare(strict_types=1);
 
 
 namespace SchrodtSven\P7WikiFoo\Internal\Type;
-use Random\Randomizer;
+use Random\Randomizer;  
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayAccessTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayCallbackTrait;
 use SchrodtSven\P7WikiFoo\Internal\Type\Dry\ArrayPartsTrait;

@@ -15,7 +15,7 @@ namespace SchrodtSven\P7WikiFoo\Internal\Kernel;
 use SchrodtSven\P7WikiFoo\App;
 use SchrodtSven\P7WikiFoo\Internal\Type\P7Array;
 
-class PhtmlParser
+class PhtmlParser implements \Stringable
 {
     private P7Array $contentData;
 
@@ -24,13 +24,17 @@ class PhtmlParser
     public const RENDER_WIDGET = 'Widgets/';
     public const RENDER_PARTLET = 'Partlets/';
 
+    public const TPL_SUFFIX = '.phtml';
+
+    private string $tplType = self::RENDER_DOCUMENT;
+
 
     /**
      * Constructor function
      *
      * @param string $tplName
      */
-    public function __construct(private string $tplName = 'default.doc.phtml')
+    public function __construct(private string $tplName = 'default.doc')
     {
         $this->contentData = new P7Array();        
     }
@@ -61,16 +65,61 @@ class PhtmlParser
     } 
  
     /**
+     * Getter for template Name
+     *
+     * @param string $name
+     * @return self
+     */
+    public function getTplName(): string
+    {
+        return $this->tplName;
+    }
+
+    /**
+     * Setter for template Name
+     *
+     * @param string $name
+     * @return self
+     */
+    public function setTplName(string $name): self
+    {
+        $this->tplName = $name;
+        return $this;
+    }
+
+    /**
+     * Getter for template Type
+     *
+     * @return string
+     */
+    public function getTplType(): string 
+    { 
+        return $this->tplType; 
+    }
+
+    /**
+     * Setter for template Type
+     *
+     * @param string $tplType
+     * @return self
+     */
+    public function setTplType(string $tplType): self 
+    { 
+        $this->tplType = $tplType; return $this; 
+    }
+
+    /**
      * Rendering phtml template
      *
      * @return string
      */
-    public function render(string $tplType = self::RENDER_DOCUMENT): string
+    public function render(): string
     {
         ob_start();
         require App::PHTML_TPL_DIR 
-            . $tplType
-            . $this->tplName;
+            . $this->tplType
+            . $this->tplName
+            . self::TPL_SUFFIX;
 
         $out = ob_get_contents();
         ob_end_clean(); 

@@ -18,6 +18,8 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal;
 
+use SchrodtSven\P7WikiFoo\Internal\Kernel\PhtmlParser;
+
 class SingletonFactory
 {
     
@@ -33,6 +35,8 @@ class SingletonFactory
         \SchrodtSven\P7WikiFoo\Communication\Http\Request::class => null,
         \SchrodtSven\P7WikiFoo\Communication\Http\Response::class => null,
         \SchrodtSven\P7WikiFoo\Communication\Http\Router::class => null,
+        \SchrodtSven\P7WikiFoo\Internal\Kernel\FrontController::class => null,
+        \SchrodtSven\P7WikiFoo\Internal\Kernel\PhtmlParser::class => null,
 
 
     ];
@@ -49,5 +53,16 @@ class SingletonFactory
             self::$container[$containerKey] = new $containerKey;
 
         return self::$container[$containerKey];
+    }
+
+    /**
+     * Checking if key in factory store exists
+     *
+     * @param string $name
+     * @return boolean
+     */
+    public static function has(string $name): bool
+    {
+        return isset(self::$container[$name]);
     }
 }

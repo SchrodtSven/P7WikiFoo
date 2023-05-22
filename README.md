@@ -14,163 +14,25 @@ Version  0.2 - in development
 ## Files
 <pre>
 <code>
+> tree 
 .
-├── LICENSE
-├── P7WikiFoo
-├── README.md
-├── cache
-├── data
-│   └── Mock
-│       ├── Metasyntactix.php
-│       ├── firstNames.php
-│       ├── lastNames.php
-│       ├── namesMails.php
-│       └── snake2Camel.php
-├── doq
-│   └── Structure_Of_API_I.txt
-├── dump
-├── make
-├── phpunit.xml
-├── public
-│   └── bootstrap.php
-├── router.php
-├── src
-│   └── P7WikiFoo
-│       ├── Api
-│       ├── App.php
-│       ├── Communication
-│       │   └── Http
-│       │       ├── ClientInterface.php
-│       │       ├── CurlClient.php
-│       │       ├── Parser.php
-│       │       ├── Protocol.php
-│       │       ├── Request.php
-│       │       └── Response.php
-│       ├── Entity
-│       │   ├── Action
-│       │   │   ├── Query
-│       │   │   │   ├── List
-│       │   │   │   │   ├── Allcategories
-│       │   │   │   │   │   └── readme.md
-│       │   │   │   │   ├── Alldeletedrevisions
-│       │   │   │   │   │   └── readme.md
-│       │   │   │   │   ├── Prefixsearch
-│       │   │   │   │   │   └── readme.md
-│       │   │   │   │   ├── Querypage
-│       │   │   │   │   │   └── readme.md
-│       │   │   │   │   └── Search
-│       │   │   │   │       ├── Module.php
-│       │   │   │   │       └── readme.md
-│       │   │   │   ├── Meta
-│       │   │   │   └── Prop
-│       │   │   └── Query.php
-│       │   └── Foo.php
-│       ├── Internal
-│       │   ├── Data
-│       │   │   ├── DataSupplier.php
-│       │   │   ├── MockTpl.php
-│       │   │   ├── Mockerizr.php
-│       │   │   └── NamedSymbols.php
-│       │   ├── EndpointBuilder.php
-│       │   ├── EndpointSettings.php
-│       │   ├── Endpoints.php
-│       │   ├── File
-│       │   │   ├── DirectoryFilter.php
-│       │   │   └── FileError.php
-│       │   ├── SingletonFactory.php
-│       │   ├── Test
-│       │   │   └── P7TestCase.php
-│       │   ├── TextProcessing
-│       │   │   ├── BeggarmanParser.php
-│       │   │   ├── TextTransformer.php
-│       │   │   └── TplContainer.php
-│       │   └── Type
-│       │       ├── Dry
-│       │       │   ├── ArrayAccessTrait.php
-│       │       │   ├── ArrayCallbackTrait.php
-│       │       │   ├── ArrayPartsTrait.php
-│       │       │   ├── ArraySortTrait.php
-│       │       │   ├── CodeBuildingTrait.php
-│       │       │   ├── IteratorTrait.php
-│       │       │   ├── MultiByteStringTrait.php
-│       │       │   ├── PrintfTrait.php
-│       │       │   ├── StackOperationTrait.php
-│       │       │   ├── StringBoolTrait.php
-│       │       │   ├── StringContextTrait.php
-│       │       │   ├── StringEmbracingTrait.php
-│       │       │   ├── StringTransformingTrait.php
-│       │       │   ├── SubStringTrait.php
-│       │       │   └── TypeConverterTrait.php
-│       │       ├── P7Array.php
-│       │       ├── P7String.php
-│       │       └── StackInterface.php
-│       └── Tools
-│           └── Tpl
-│               ├── MethodDocBlock.tpl
-│               └── TestCase.tpl
-└── test
-    ├── Api
-    ├── AppTest.php
-    ├── Communication
-    │   └── Http
-    │       ├── CurlClientTest.php
-    │       ├── ParserTest.php
-    │       ├── ProtocolTest.php
-    │       ├── RequestTest.php
-    │       └── ResponseTest.php
-    ├── Entity
-    │   ├── Action
-    │   │   ├── Query
-    │   │   │   └── List
-    │   │   │       └── Search
-    │   │   │           └── ModuleTest.php
-    │   │   └── QueryTest.php
-    │   └── FooTest.php
-    ├── Internal
-    │   ├── Data
-    │   │   └── NamedSymbolsTest.php
-    │   ├── EndpointBuilderTest.php
-    │   ├── EndpointSettingsTest.php
-    │   ├── EndpointsTest.php
-    │   ├── File
-    │   │   └── DirectoryFilterTest.php
-    │   ├── Test
-    │   │   └── P7TestCaseTest.php
-    │   ├── TextProcessing
-    │   │   └── BeggarmanParserTest.php
-    │   └── Type
-    │       ├── P7ArrayTest.php
-    │       ├── P7StringTest.php
-    │       └── StackInterfaceTest.php
-    └── Tools
 
-</code>
-</pre>
+     100 files     127 text files.
+classified 118 filesDuplicate file check 118 files (114 known unique)Unique:      100 files                                               118 unique files.                              
+Counting:  100      13 files ignored.
 
-
-## STATS     
-<pre><code>
-     100 files
-     117 text files.
-classified 108 files
-Duplicate file check 108 files (104 known unique)
-Unique:      100 files                                          
-     107 unique files.                              
-Counting:  100
-      14 files ignored.
-
-github.com/AlDanial/cloc v 1.96  T=0.06 s (1909.4 files/s, 193543.5 lines/s)
+github.com/AlDanial/cloc v 1.96  T=0.05 s (2259.4 files/s, 217492.8 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-PHP                             89           1031           3087           5194
+PHP                            100           1144           3286           5526
 JSON                             1              0              0           1000
 Text                            14             48              0            314
-Markdown                         1             10              0            142
 XML                              1              0              0             16
+Markdown                         1              8              0             13
 Bourne Shell                     1              0              0              4
 -------------------------------------------------------------------------------
-SUM:                           107           1089           3087           6670
+SUM:                           118           1200           3286           6873
 -------------------------------------------------------------------------------
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
@@ -199,5 +61,3 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 Time: 00:00.091, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
-</code>
-</pre>

@@ -1,0 +1,19 @@
+<footer>
+    <?= $this->header ?>
+
+</footer>
+<table border>
+    <?php foreach ($this->rows as $row):
+    ?>
+    <tr>
+        <td><?= $row[0] ?></td>
+        <td><?= $row[1] ?></td>
+    </tr>
+    <?php
+        endforeach;
+    ?>
+</table>
+<footer>
+    <?= $this->footer ?>
+
+</footer>

@@ -14,7 +14,37 @@ declare(strict_types=1);
 
 namespace SchrodtSven\P7WikiFoo\Internal\Kernel;
 
+use SchrodtSven\P7WikiFoo\Communication\Http\Router;
+use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlAttribute;
+use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlElement;
+use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
+
 class FrontController
 {
-    
+    private Router $router;
+
+    public function __construct()
+    {
+        $this->router = SingletonFactory::get(Router::class);
+        $this->run();
+    }    
+
+    public function run(): void
+    {
+        $parser = SingletonFactory::get(PhtmlParser::class);
+        $parser->setTplName('raw.table');
+        $parser->setTplType(PhtmlParser::RENDER_DOCLET);
+        $parser->rows = [
+                            ['action', $this->router->getController()],
+                            ['controller', $this->router->getAction()],
+                            ['params', var_export($this->router->getParams(), true)]
+        ];
+
+        $head = new HtmlElement('h1', 'Lorem Ipsum');
+        $att = new HtmlAttribute(['style' => 'color: blue']);
+        $head->setAttributes($att);
+        $parser->header = ($head->render());
+        $parser->footer = (new HtmlElement('pre', (new HtmlElement('h1', 'Ipsum Lorem'))->render()  ))->render();
+        echo $parser->render();
+    }
 }

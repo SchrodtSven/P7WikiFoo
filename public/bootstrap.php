@@ -13,19 +13,26 @@ use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Php;
 use SchrodtSven\P7WikiFoo\Communication\Http\Router;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 use SchrodtSven\P7WikiFoo\Internal\Kernel\PhtmlParser;
+use SchrodtSven\P7WikiFoo\Internal\Kernel\FrontController;
 
 require_once 'src/P7WikiFoo/App.php';
 
 
-$parser = new PhtmlParser();
-$parser->set('lang', 'de');
-$parser->set('title', 'Foo tpl');
-$parser->set('content', '<h1>Foo::bar</h1>');
-$f = SingletonFactory::get(Router::class);
+$f = SingletonFactory::get(FrontController::class);
 
 
 
-echo $parser->render();
+
+
+// $parser = new PhtmlParser();
+// $parser->set('lang', 'de');
+// $parser->set('title', 'Foo tpl');
+// $parser->set('content', '<h1>Foo::bar</h1>');
+// $f = SingletonFactory::get(Router::class);
+
+
+
+// echo $parser->render();
 // var_dump($f->getAction());
 // var_dump($f->getController());   
 // var_dump($f->getParams());   
