@@ -17,22 +17,181 @@ Version  0.2 - in development
 > tree 
 .
 
-     100 files     127 text files.
-classified 118 filesDuplicate file check 118 files (114 known unique)Unique:      100 files                                               118 unique files.                              
+.
+├── LICENSE
+├── P7WikiFoo
+├── README.md
+├── cache
+├── data
+│   └── Mock
+│       ├── LoremIpsum.txt
+│       ├── Metasyntactix.php
+│       ├── firstNames.php
+│       ├── lastNames.php
+│       ├── namesMails.php
+│       └── snake2Camel.php
+├── doq
+│   └── Structure_Of_API_I.txt
+├── dump
+├── make
+├── phpunit.xml
+├── public
+│   ├── bootstrap.php
+│   └── reflector.php
+├── router.php
+├── src
+│   └── P7WikiFoo
+│       ├── Api
+│       ├── App
+│       │   ├── Controllers
+│       │   ├── Models
+│       │   └── Views
+│       │       ├── Doclets
+│       │       │   └── raw.table.phtml
+│       │       ├── Documents
+│       │       │   └── default.doc.phtml
+│       │       ├── Partlets
+│       │       └── Widgets
+│       ├── App.php
+│       ├── Communication
+│       │   └── Http
+│       │       ├── ClientInterface.php
+│       │       ├── CurlClient.php
+│       │       ├── Parser.php
+│       │       ├── Protocol.php
+│       │       ├── Request.php
+│       │       ├── RequestInterface.php
+│       │       ├── Response.php
+│       │       └── Router.php
+│       ├── Entity
+│       │   ├── Action
+│       │   │   ├── Query
+│       │   │   │   ├── List
+│       │   │   │   │   ├── Allcategories
+│       │   │   │   │   │   └── readme.md
+│       │   │   │   │   ├── Alldeletedrevisions
+│       │   │   │   │   │   └── readme.md
+│       │   │   │   │   ├── Prefixsearch
+│       │   │   │   │   │   └── readme.md
+│       │   │   │   │   ├── Querypage
+│       │   │   │   │   │   └── readme.md
+│       │   │   │   │   └── Search
+│       │   │   │   │       ├── Module.php
+│       │   │   │   │       └── readme.md
+│       │   │   │   ├── Meta
+│       │   │   │   └── Prop
+│       │   │   └── Query.php
+│       │   ├── Foo.php
+│       │   └── Frontend
+│       │       ├── HtmlAttributes.php
+│       │       ├── HtmlElement.php
+│       │       └── HtmlSyntax.php
+│       ├── Internal
+│       │   ├── Data
+│       │   │   ├── CodeBuilder.php
+│       │   │   ├── CodeTpl.php
+│       │   │   ├── DataSupplier.php
+│       │   │   ├── MockTpl.php
+│       │   │   ├── Mockerizr.php
+│       │   │   └── NamedSymbols.php
+│       │   ├── EndpointBuilder.php
+│       │   ├── EndpointSettings.php
+│       │   ├── Endpoints.php
+│       │   ├── File
+│       │   │   ├── DirectoryFilter.php
+│       │   │   └── FileError.php
+│       │   ├── Kernel
+│       │   │   ├── FrontController.php
+│       │   │   └── PhtmlParser.php
+│       │   ├── SingletonFactory.php
+│       │   ├── Test
+│       │   │   └── P7TestCase.php
+│       │   ├── TextProcessing
+│       │   │   ├── BeggarmanParser.php
+│       │   │   ├── TextTransformer.php
+│       │   │   └── TplContainer.php
+│       │   └── Type
+│       │       ├── Dry
+│       │       │   ├── ArrayAccessTrait.php
+│       │       │   ├── ArrayCallbackTrait.php
+│       │       │   ├── ArrayContentsTrait.php
+│       │       │   ├── ArrayContextTrait.php
+│       │       │   ├── ArrayCustomTrait.php
+│       │       │   ├── ArrayPartsTrait.php
+│       │       │   ├── ArraySortTrait.php
+│       │       │   ├── CodeBuildingTrait.php
+│       │       │   ├── IteratorTrait.php
+│       │       │   ├── MultiByteStringTrait.php
+│       │       │   ├── PrintfTrait.php
+│       │       │   ├── StackOperationTrait.php
+│       │       │   ├── StringBoolTrait.php
+│       │       │   ├── StringContextTrait.php
+│       │       │   ├── StringEmbracingTrait.php
+│       │       │   ├── StringTransformingTrait.php
+│       │       │   ├── SubStringTrait.php
+│       │       │   ├── TypeConverterTrait.php
+│       │       │   └── ValueTrait.php
+│       │       ├── P7Array.php
+│       │       ├── P7String.php
+│       │       └── StackInterface.php
+│       └── Tools
+│           └── Tpl
+│               ├── MethodDocBlock.tpl
+│               └── TestCase.tpl
+├── test
+│   ├── Api
+│   ├── AppTest.php
+│   ├── Communication
+│   │   └── Http
+│   │       ├── CurlClientTest.php
+│   │       ├── ParserTest.php
+│   │       ├── ProtocolTest.php
+│   │       ├── RequestTest.php
+│   │       └── ResponseTest.php
+│   ├── Entity
+│   │   ├── Action
+│   │   │   ├── Query
+│   │   │   │   └── List
+│   │   │   │       └── Search
+│   │   │   │           └── ModuleTest.php
+│   │   │   └── QueryTest.php
+│   │   └── FooTest.php
+│   ├── Internal
+│   │   ├── Data
+│   │   │   └── NamedSymbolsTest.php
+│   │   ├── EndpointBuilderTest.php
+│   │   ├── EndpointSettingsTest.php
+│   │   ├── EndpointsTest.php
+│   │   ├── File
+│   │   │   └── DirectoryFilterTest.php
+│   │   ├── Test
+│   │   │   └── P7TestCaseTest.php
+│   │   ├── TextProcessing
+│   │   │   └── BeggarmanParserTest.php
+│   │   └── Type
+│   │       ├── P7ArrayTest.php
+│   │       ├── P7StringTest.php
+│   │       └── StackInterfaceTest.php
+│   └── Tools
+└── tree.txt
+
+
+     100 files     128 text files.
+classified 119 filesDuplicate file check 119 files (115 known unique)Unique:      100 files                                               119 unique files.                              
 Counting:  100      13 files ignored.
 
-github.com/AlDanial/cloc v 1.96  T=0.05 s (2259.4 files/s, 217492.8 lines/s)
+github.com/AlDanial/cloc v 1.96  T=0.05 s (2249.8 files/s, 217964.7 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-PHP                            100           1144           3286           5526
+PHP                            100           1144           3294           5526
 JSON                             1              0              0           1000
-Text                            14             48              0            314
+Text                            15             50              0            315
+Markdown                         1             10              0            170
 XML                              1              0              0             16
-Markdown                         1              8              0             13
 Bourne Shell                     1              0              0              4
 -------------------------------------------------------------------------------
-SUM:                           118           1200           3286           6873
+SUM:                           119           1204           3294           7031
 -------------------------------------------------------------------------------
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
