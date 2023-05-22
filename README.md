@@ -16,8 +16,6 @@ Version  0.2 - in development
 <code>
 > tree 
 .
-
-.
 ├── LICENSE
 ├── P7WikiFoo
 ├── README.md
@@ -33,7 +31,10 @@ Version  0.2 - in development
 ├── doq
 │   └── Structure_Of_API_I.txt
 ├── dump
+├── foo.php
+├── gitit.sh
 ├── make
+├── phpunit -> ../vendor/vendor/phpunit
 ├── phpunit.xml
 ├── public
 │   ├── bootstrap.php
@@ -138,47 +139,52 @@ Version  0.2 - in development
 │           └── Tpl
 │               ├── MethodDocBlock.tpl
 │               └── TestCase.tpl
-├── test
-│   ├── Api
-│   ├── AppTest.php
-│   ├── Communication
-│   │   └── Http
-│   │       ├── CurlClientTest.php
-│   │       ├── ParserTest.php
-│   │       ├── ProtocolTest.php
-│   │       ├── RequestTest.php
-│   │       └── ResponseTest.php
-│   ├── Entity
-│   │   ├── Action
-│   │   │   ├── Query
-│   │   │   │   └── List
-│   │   │   │       └── Search
-│   │   │   │           └── ModuleTest.php
-│   │   │   └── QueryTest.php
-│   │   └── FooTest.php
-│   ├── Internal
-│   │   ├── Data
-│   │   │   └── NamedSymbolsTest.php
-│   │   ├── EndpointBuilderTest.php
-│   │   ├── EndpointSettingsTest.php
-│   │   ├── EndpointsTest.php
-│   │   ├── File
-│   │   │   └── DirectoryFilterTest.php
-│   │   ├── Test
-│   │   │   └── P7TestCaseTest.php
-│   │   ├── TextProcessing
-│   │   │   └── BeggarmanParserTest.php
-│   │   └── Type
-│   │       ├── P7ArrayTest.php
-│   │       ├── P7StringTest.php
-│   │       └── StackInterfaceTest.php
-│   └── Tools
-└── tree.txt
+└─── test
+    ├── Api
+    ├── AppTest.php
+    ├── Communication
+    │   └── Http
+    │       ├── CurlClientTest.php
+    │       ├── ParserTest.php
+    │       ├── ProtocolTest.php
+    │       ├── RequestTest.php
+    │       └── ResponseTest.php
+    ├── Entity
+    │   ├── Action
+    │   │   ├── Query
+    │   │   │   └── List
+    │   │   │       └── Search
+    │   │   │           └── ModuleTest.php
+    │   │   └── QueryTest.php
+    │   └── FooTest.php
+    ├── Internal
+    │   ├── Data
+    │   │   └── NamedSymbolsTest.php
+    │   ├── EndpointBuilderTest.php
+    │   ├── EndpointSettingsTest.php
+    │   ├── EndpointsTest.php
+    │   ├── File
+    │   │   └── DirectoryFilterTest.php
+    │   ├── Test
+    │   │   └── P7TestCaseTest.php
+    │   ├── TextProcessing
+    │   │   └── BeggarmanParserTest.php
+    │   └── Type
+    │       ├── P7ArrayTest.php
+    │       ├── P7StringTest.php
+    │       └── StackInterfaceTest.php
+    └── Tools
 
+> cloc .
 
-     100 files     128 text files.
-classified 119 filesDuplicate file check 119 files (115 known unique)Unique:      100 files                                               119 unique files.                              
-Counting:  100      13 files ignored.
+     100 files
+     128 text files.
+classified 119 files
+Duplicate file check 119 files (115 known unique)
+Unique:      100 files                                          
+     119 unique files.                              
+Counting:  100
+      13 files ignored.
 
 github.com/AlDanial/cloc v 1.96  T=0.05 s (2249.8 files/s, 217964.7 lines/s)
 -------------------------------------------------------------------------------
@@ -193,6 +199,8 @@ Bourne Shell                     1              0              0              4
 -------------------------------------------------------------------------------
 SUM:                           119           1204           3294           7031
 -------------------------------------------------------------------------------
+
+> phpunit
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 8.2.5
@@ -220,3 +228,5 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 Time: 00:00.091, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
+</code>
+</pre>
