@@ -4,8 +4,8 @@ declare(strict_types=1);
 /**
  *  This router is to be used with PHP Development Server for local development/testing purposes
  * 
- * - Routing to public/bootstrap.php if requested resource does not exist as file resource 
- *   in document root ($PROJECTNAME/public)
+ *  - Routing to public/bootstrap.php if requested resource does not exist as file resource 
+ *    in document root ($PROJECTNAME/public)
  * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo

@@ -4,6 +4,8 @@ declare(strict_types=1);
 /**
  * Class for parsing *.phtml (templates in alterntive PHP syntax)
  * 
+ * @see https://www.php.net/manual/en/control-structures.alternative-syntax.php
+ * 
  * @author Sven Schrodt<sven@schrodt.club>
  * @link https://github.com/SchrodtSven/P7WikiFoo
  * @package P7WikiFoo
@@ -81,7 +83,7 @@ class PhtmlParser implements \Stringable
      *
      * @param string $tplName
      */
-    public function __construct(private string $tplName = 'default.doc')
+    public function __construct(private string $tplName)
     {
         $this->contentData = new P7Array();        
     }
@@ -110,6 +112,27 @@ class PhtmlParser implements \Stringable
     {
         return $this->contentData[$name] ?? null;
     } 
+
+    /**
+     * Unsetter for named content parts
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public function unset(string $name): void
+    {
+        unset($this->contentData[$name]);
+    }
+
+    /**
+     * Resetting all content
+     *
+     * @return void
+     */
+    public function reset(): void
+    {
+        $this->contentData = new P7Array();
+    }
  
     /**
      * Getter for template Name

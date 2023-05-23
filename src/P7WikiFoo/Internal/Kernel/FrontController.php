@@ -20,7 +20,7 @@ use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlAttributes;
 use SchrodtSven\P7WikiFoo\Entity\Frontend\HtmlElement;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 use SchrodtSven\P7WikiFoo\App;
-use SchrodtSven\P7WikiFoo\App\Controllers\ActionController;
+use SchrodtSven\P7WikiFoo\Internal\Kernel\ActionController;
 
 class FrontController
 {
@@ -55,6 +55,7 @@ class FrontController
     /**
      * Running app
      *
+     * @FIXME - correct HTTP status codes on errors (non-existing action controllers, runtime errors etc.)
      * @return void
      */
     public function run(): void

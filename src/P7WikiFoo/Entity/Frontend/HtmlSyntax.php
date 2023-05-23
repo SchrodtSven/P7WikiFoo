@@ -16,12 +16,40 @@ namespace SchrodtSven\P7WikiFoo\Entity\Frontend;
 
 class HtmlSyntax
 {
+    /**
+     * Template for non-empty element
+     * 
+     * @var string
+     */
     public const ELEMENT_TPL = '<%s%s>%s</%s>';
 
+    /**
+     * Template for non-empty element      
+     *  
+     * @var string
+     */
+    public const EMPTY_ELEMENT_TPL = '<%s%s />';
+
+    /**
+     * Template for non-empty element multi lined
+     * 
+     * @FIXME -> format/beautify
+     * @var string
+     */
     public const ELEMENT_TPL_MULTI = '<%s%s>
     %s
     </%s>';
 
+    /**
+     * Template for attribute assignment - example:
+     * <code>
+     * 
+     * name = "value"
+     * 
+     * </code>
+     * 
+     * @var string
+     */
     public const ATTRIB_ASSIGN = '%s = "%s"';
 
 

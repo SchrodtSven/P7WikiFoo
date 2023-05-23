@@ -20,7 +20,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 use SchrodtSven\P7WikiFoo\Communication\Http\Request;
 use SchrodtSven\P7WikiFoo\Internal\SingletonFactory;
 use SchrodtSven\P7WikiFoo\App;
-use SchrodtSven\P7WikiFoo\App\Controllers\ActionController;
+use SchrodtSven\P7WikiFoo\Internal\Kernel\ActionController;
 
 class Router
 {

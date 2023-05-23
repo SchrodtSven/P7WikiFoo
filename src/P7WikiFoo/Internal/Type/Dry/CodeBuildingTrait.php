@@ -1,10 +1,6 @@
 <?php
 /**
- * Collection of static functions matching sub strings by:
- * 
- * - RegExp(s)
- * - Rule(s)
- * - Rule Definition(s)
+ * Collection functions fopr source code creation
  * 
  * 
  * @author Sven Schrodt<sven@schrodt.club>
@@ -78,7 +74,6 @@ trait CodeBuildingTrait
     public function setIndentLevel(int $indentLevel): self
     {
         $this->indentLevel = $indentLevel;
-
         return $this;
     }
 

@@ -37,6 +37,8 @@ class SingletonFactory
         \SchrodtSven\P7WikiFoo\Communication\Http\Router::class => null,
         \SchrodtSven\P7WikiFoo\Internal\Kernel\FrontController::class => null,
         \SchrodtSven\P7WikiFoo\Internal\TextProcessing\BeggarmanParser::class => null,
+        \SchrodtSven\P7WikiFoo\Internal\Kernel\PhtmlParser::class => null,
+        \SchrodtSven\P7WikiFoo\Internal\Kernel\SessionManager::class => null,
 
 
 

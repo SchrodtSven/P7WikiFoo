@@ -20,16 +20,44 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 
 class Response
 {
+    /**
+     * Header partv of response
+     *
+     * @var string
+     */
     private string $headers;
 
+    /**
+     * Payload (“Body”) part of response
+     *
+     * @var string
+     */
     private string $payload;
 
+    /**
+     * Status line 
+     *
+     * @var string
+     */
     private string  $statusLine = '';
 
+    /**
+     * Header lines parsed 
+     *
+     * @var P7Array
+     */
     private P7Array $parsedHeaders;
 
+    /**
+     * HTTP Status Code
+     *
+     * @var integer
+     */
     private int $statusCode;
 
+    /**
+     * Constructor function
+     */
     public function __construct()
     {
         $this->parsedHeaders = new P7Array([]);
@@ -53,7 +81,6 @@ class Response
         return $this;
     }
 
-
     /**
      * @param string $name
      * @param string $value
@@ -66,6 +93,12 @@ class Response
         return $this;
     }
 
+    /**
+     * Getter for certain named parsed header
+     *
+     * @param string $name
+     * @return void
+     */
     public function getParsedHeader(string $name)
     {
         return $this->parsedHeaders[$name];
@@ -80,6 +113,8 @@ class Response
     }
 
     /**
+     * Setter for response payload
+     * 
      * @param string $payload
      * @return Response
      */
@@ -90,6 +125,8 @@ class Response
     }
 
     /**
+     * Getter for status line
+     * 
      * @return string
      */
     public function getStatusLine(): string
@@ -98,6 +135,8 @@ class Response
     }
 
     /**
+     * Setter for status line
+     * 
      * @param string $statusLine
      * @return Response
      */
@@ -108,6 +147,8 @@ class Response
     }
 
     /**
+     * Getter for parsed headers 
+     * 
      * @return P7Array|P7String
      */
     public function getParsedHeaders(): P7Array|P7String
@@ -126,6 +167,8 @@ class Response
     }
 
     /**
+     * Getter for status code
+     * 
      * @return int
      */
     public function getStatusCode(): int
@@ -134,6 +177,8 @@ class Response
     }
 
     /**
+     * Setter for status code
+     * 
      * @param int $statusCode
      * @return Response
      */
