@@ -14,12 +14,10 @@ Version  0.2 - in development
 ## Files
 <pre>
 <code>
-> tree 
-.
+ .
 ├── LICENSE
 ├── P7WikiFoo
 ├── README.md
-├── cache
 ├── data
 │   └── Mock
 │       ├── LoremIpsum.txt
@@ -30,21 +28,22 @@ Version  0.2 - in development
 │       └── snake2Camel.php
 ├── doq
 │   └── Structure_Of_API_I.txt
-├── dump
 ├── foo.php
 ├── gitit.sh
 ├── make
-├── phpunit -> ../vendor/vendor/phpunit
 ├── phpunit.xml
 ├── public
 │   ├── bootstrap.php
-│   └── reflector.php
+│   ├── reflector.php
+│   ├── sess2.php
+│   └── session.php
 ├── router.php
 ├── src
 │   └── P7WikiFoo
 │       ├── Api
 │       ├── App
 │       │   ├── Controllers
+│       │   │   └── FooController.php
 │       │   ├── Models
 │       │   └── Views
 │       │       ├── Doclets
@@ -52,6 +51,7 @@ Version  0.2 - in development
 │       │       ├── Documents
 │       │       │   └── default.doc.phtml
 │       │       ├── Partlets
+│       │       │   └── ulli.phtml
 │       │       └── Widgets
 │       ├── App.php
 │       ├── Communication
@@ -85,6 +85,7 @@ Version  0.2 - in development
 │       │   ├── Foo.php
 │       │   └── Frontend
 │       │       ├── HtmlAttributes.php
+│       │       ├── HtmlCollection.php
 │       │       ├── HtmlElement.php
 │       │       └── HtmlSyntax.php
 │       ├── Internal
@@ -102,8 +103,13 @@ Version  0.2 - in development
 │       │   │   ├── DirectoryFilter.php
 │       │   │   └── FileError.php
 │       │   ├── Kernel
+│       │   │   ├── ActionController.php
+│       │   │   ├── Dry
+│       │   │   │   └── Container.php
 │       │   │   ├── FrontController.php
-│       │   │   └── PhtmlParser.php
+│       │   │   ├── PhtmlParser.php
+│       │   │   ├── SessionManager.php
+│       │   │   └── ViewModel.php
 │       │   ├── SingletonFactory.php
 │       │   ├── Test
 │       │   │   └── P7TestCase.php
@@ -136,71 +142,64 @@ Version  0.2 - in development
 │       │       ├── P7String.php
 │       │       └── StackInterface.php
 │       └── Tools
+│           ├── DebugHelper.php
 │           └── Tpl
 │               ├── MethodDocBlock.tpl
 │               └── TestCase.tpl
-└─── test
-    ├── Api
-    ├── AppTest.php
-    ├── Communication
-    │   └── Http
-    │       ├── CurlClientTest.php
-    │       ├── ParserTest.php
-    │       ├── ProtocolTest.php
-    │       ├── RequestTest.php
-    │       └── ResponseTest.php
-    ├── Entity
-    │   ├── Action
-    │   │   ├── Query
-    │   │   │   └── List
-    │   │   │       └── Search
-    │   │   │           └── ModuleTest.php
-    │   │   └── QueryTest.php
-    │   └── FooTest.php
-    ├── Internal
-    │   ├── Data
-    │   │   └── NamedSymbolsTest.php
-    │   ├── EndpointBuilderTest.php
-    │   ├── EndpointSettingsTest.php
-    │   ├── EndpointsTest.php
-    │   ├── File
-    │   │   └── DirectoryFilterTest.php
-    │   ├── Test
-    │   │   └── P7TestCaseTest.php
-    │   ├── TextProcessing
-    │   │   └── BeggarmanParserTest.php
-    │   └── Type
-    │       ├── P7ArrayTest.php
-    │       ├── P7StringTest.php
-    │       └── StackInterfaceTest.php
-    └── Tools
+└── test
+    ├── Api
+    ├── AppTest.php
+    ├── Communication
+    │   └── Http
+    │       ├── CurlClientTest.php
+    │       ├── ParserTest.php
+    │       ├── ProtocolTest.php
+    │       ├── RequestTest.php
+    │       └── ResponseTest.php
+    ├── Entity
+    │   ├── Action
+    │   │   ├── Query
+    │   │   │   └── List
+    │   │   │       └── Search
+    │   │   │           └── ModuleTest.php
+    │   │   └── QueryTest.php
+    │   └── FooTest.php
+    ├── Internal
+    │   ├── Data
+    │   │   └── NamedSymbolsTest.php
+    │   ├── EndpointBuilderTest.php
+    │   ├── EndpointSettingsTest.php
+    │   ├── EndpointsTest.php
+    │   ├── File
+    │   │   └── DirectoryFilterTest.php
+    │   ├── Test
+    │   │   └── P7TestCaseTest.php
+    │   ├── TextProcessing
+    │   │   └── BeggarmanParserTest.php
+    │   └── Type
+    │       ├── P7ArrayTest.php
+    │       ├── P7StringTest.php
+    │       └── StackInterfaceTest.php
+    └── Tools
 
-> cloc .
+58 directories, 109 files
+     100 files     140 text files.
+classified 130 filesDuplicate file check 130 files (126 known unique)Unique:      100 files                                               130 unique files.                              
+Counting:  100      14 files ignored.
 
-     100 files
-     128 text files.
-classified 119 files
-Duplicate file check 119 files (115 known unique)
-Unique:      100 files                                          
-     119 unique files.                              
-Counting:  100
-      13 files ignored.
-
-github.com/AlDanial/cloc v 1.96  T=0.05 s (2249.8 files/s, 217964.7 lines/s)
+github.com/AlDanial/cloc v 1.96  T=0.06 s (2294.1 files/s, 226441.6 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-PHP                            100           1144           3294           5526
+PHP                            111           1234           3953           5866
 JSON                             1              0              0           1000
-Text                            15             50              0            315
-Markdown                         1             10              0            170
+Text                            15             49              0            522
+Markdown                         1              8              0            179
 XML                              1              0              0             16
-Bourne Shell                     1              0              0              4
+Bourne Shell                     1              0              0              5
 -------------------------------------------------------------------------------
-SUM:                           119           1204           3294           7031
+SUM:                           130           1291           3953           7588
 -------------------------------------------------------------------------------
-
-> phpunit
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 8.2.5
@@ -228,5 +227,3 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 Time: 00:00.091, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
-</code>
-</pre>
