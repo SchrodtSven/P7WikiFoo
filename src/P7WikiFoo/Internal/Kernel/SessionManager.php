@@ -81,12 +81,16 @@ class SessionManager
    /**
     * Rollback to previous state
     *
-    * @param string $name
     * @return boolean
     */
-   public function reset(string $name): bool
+   public function reset(): bool
    {
         return session_reset();
+   }
+
+   public function getAll(): array
+   {
+        return $_SESSION;
    }
 
    /**

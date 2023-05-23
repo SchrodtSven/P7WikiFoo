@@ -42,7 +42,7 @@ class Protocol
 
     public const METHOD_CONNECT = 'CONNECT';
 
-    // Character sequences with special meaning within HTTP
+    // Character (sequences) with special meaning within HTTP
     
     public const HEADER_SEPARATOR = "\r\n";
 

@@ -62,7 +62,7 @@ class P7StringTest extends P7TestCase
 
 
     /**
-     * Testing transformation snake_case -> camelCase
+     * Testing transformation  camelCase -> snake_case
      *
      * @dataProvider  snakyToCamelProvider
      * 

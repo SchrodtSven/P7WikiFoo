@@ -21,7 +21,7 @@ use SchrodtSven\P7WikiFoo\Internal\Type\P7String;
 class Response
 {
     /**
-     * Header partv of response
+     * Header part of response
      *
      * @var string
      */
