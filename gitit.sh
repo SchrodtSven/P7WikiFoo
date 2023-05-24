@@ -4,7 +4,7 @@ if [ $# -eq 0 ]
     exit 23
 fi
 # Add current project file structure (filtered) to README.md
-tree -I "archive|dump|cache|phpunit|tree.txt"  >> README.md
+tree -I "archive|dump|cache|phpunit"  >> README.md
 # Counting lines of code (filtered by .cloc contents) and add to README.md
 cloc . >> README.md; 
 # Processing uit tests and add results to README.md
