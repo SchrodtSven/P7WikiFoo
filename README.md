@@ -30,6 +30,7 @@ Version  0.2 - in development
 ├── doq
 │   └── Structure_Of_API_I.txt
 ├── foo.php
+├── foo.sh
 ├── gitit.sh
 ├── make
 ├── phpunit.xml
@@ -183,23 +184,23 @@ Version  0.2 - in development
     │       └── StackInterfaceTest.php
     └── Tools
 
-58 directories, 109 files
-     100 files     140 text files.
-classified 130 filesDuplicate file check 130 files (126 known unique)Unique:      100 files                                               130 unique files.                              
+58 directories, 110 files
+     100 files     141 text files.
+classified 131 filesDuplicate file check 131 files (127 known unique)Unique:      100 files                                               131 unique files.                              
 Counting:  100      14 files ignored.
 
-github.com/AlDanial/cloc v 1.96  T=0.06 s (2264.6 files/s, 223186.2 lines/s)
+github.com/AlDanial/cloc v 1.96  T=0.06 s (2089.1 files/s, 204494.0 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 PHP                            111           1235           3953           5871
 JSON                             1              0              0           1000
 Text                            15             49              0            485
-Markdown                         1              9              0            179
+Markdown                         1              9              0            180
+Bourne Shell                     2              1              5             19
 XML                              1              0              0             16
-Bourne Shell                     1              6              4              5
 -------------------------------------------------------------------------------
-SUM:                           130           1299           3957           7556
+SUM:                           131           1294           3958           7571
 -------------------------------------------------------------------------------
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
@@ -225,7 +226,7 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 ............................................................. 1037 / 1053 ( 98%)
 ................                                              1053 / 1053 (100%)
 
-Time: 00:00.092, Memory: 26.39 MB
+Time: 00:00.090, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
 </code>
