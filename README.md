@@ -11,10 +11,11 @@ Version  0.2 - in development
  
 
 
-## Files
+## Files, Stats & Unit Testing
 <pre>
 <code>
- .
+
+.
 ├── LICENSE
 ├── P7WikiFoo
 ├── README.md
@@ -187,18 +188,18 @@ Version  0.2 - in development
 classified 130 filesDuplicate file check 130 files (126 known unique)Unique:      100 files                                               130 unique files.                              
 Counting:  100      14 files ignored.
 
-github.com/AlDanial/cloc v 1.96  T=0.06 s (2294.1 files/s, 226441.6 lines/s)
+github.com/AlDanial/cloc v 1.96  T=0.06 s (2264.6 files/s, 223186.2 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
-PHP                            111           1234           3953           5866
+PHP                            111           1235           3953           5871
 JSON                             1              0              0           1000
-Text                            15             49              0            522
-Markdown                         1              8              0            179
+Text                            15             49              0            485
+Markdown                         1              9              0            179
 XML                              1              0              0             16
-Bourne Shell                     1              0              0              5
+Bourne Shell                     1              6              4              5
 -------------------------------------------------------------------------------
-SUM:                           130           1291           3953           7588
+SUM:                           130           1299           3957           7556
 -------------------------------------------------------------------------------
   PHPUnit 9.5.27 by Sebastian Bergmann and contributors.
 
@@ -224,6 +225,8 @@ Configuration: /Users/svenschrodt/projects/P7WikiFoo/phpunit.xml
 ............................................................. 1037 / 1053 ( 98%)
 ................                                              1053 / 1053 (100%)
 
-Time: 00:00.091, Memory: 26.39 MB
+Time: 00:00.092, Memory: 26.39 MB
 
 OK (1053 tests, 3906 assertions)
+</code>
+</pre>

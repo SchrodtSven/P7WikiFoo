@@ -21,7 +21,13 @@ class FileError extends \Error
      * @var array
      */
     public const MESSAGE_CODE_MATCH = [
+        400 => 'Bad Request',
+        401 => 'Unauthorized',
+        402 => 'Payment Required',
+        403 => 'Permission denied - %s',
         404 => 'The file resource %s could not be found!',
+
+        500 => 'The server box makes booh booh',
         666 => 'The devil is in the details - %s'
     ];
     
