@@ -5,7 +5,7 @@ archive
 phpunit
 .phpunit.result.cache
 phpunit.phar
-foo.php
+foo.sh
 goo.php
 boo.php
 moo.php

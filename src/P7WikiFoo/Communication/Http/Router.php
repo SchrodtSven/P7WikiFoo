@@ -3,7 +3,7 @@
 declare(strict_types=1);
 /**
  * Class managing HTTP routing:
- *  - uri (http|https://foo/bar/..)  => $SUB\NAMESPACE\$Class::method(...parameters)
+ *  - uri (http|https://example.com/foo/bar/..)  => $SUB\NAMESPACE\$Class::method(...parameters)
  * 
  * @TODO Extend routing to work in sub directories of $DOCUMENT_ROOT!!!
  * 
@@ -104,7 +104,7 @@ class Router
     public function getControllerName(): string
     {
         return $this->controller;
-    }
+    } 
 
     public function getActionName(): string
     {
